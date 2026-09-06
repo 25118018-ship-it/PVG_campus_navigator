@@ -7,7 +7,7 @@ const chatForm = document.getElementById('chat-form');
 const chatInput = document.getElementById('chat-input');
 
 // Step 1: Load the JSON file as soon as the page opens.
-fetch('data/campus_data.json')
+fetch('campus_data.json')
   .then((response) => response.json())
   .then((data) => {
     campusData = data;
