@@ -1,0 +1,205 @@
+:root {
+  --paper: #F6F3EC;
+  --ink: #1E2A33;
+  --navy: #1E3A4C;
+  --brass: #B8863B;
+  --line: #D9D2C2;
+  --bot-bubble: #FFFFFF;
+  --user-bubble: #1E3A4C;
+  --radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Georgia", "Iowan Old Style", serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-header {
+  border-bottom: 2px solid var(--navy);
+  padding: 1.5rem 1.5rem 1.25rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.brand-mark {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--paper);
+  background: var(--navy);
+  border-radius: 6px;
+  padding: 0.4rem 0.55rem;
+}
+
+.brand-text h1 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.brand-text p {
+  margin: 0.15rem 0 0;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.85rem;
+  color: #5B6B74;
+}
+
+.chat-shell {
+  flex: 1;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-log {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding-bottom: 1.5rem;
+}
+
+.message {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  padding: 0.8rem 1rem;
+  border-radius: var(--radius);
+  max-width: 85%;
+}
+
+.message p {
+  margin: 0 0 0.5rem;
+}
+
+.message p:last-child {
+  margin-bottom: 0;
+}
+
+.message.bot {
+  background: var(--bot-bubble);
+  border: 1px solid var(--line);
+  align-self: flex-start;
+  border-top-left-radius: 2px;
+}
+
+.message.user {
+  background: var(--user-bubble);
+  color: var(--paper);
+  align-self: flex-end;
+  border-top-right-radius: 2px;
+}
+
+.examples {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: #5B6B74;
+}
+
+.examples li {
+  margin-bottom: 0.2rem;
+}
+
+.result-card {
+  background: #FBF9F4;
+  border-left: 3px solid var(--brass);
+  padding: 0.6rem 0.8rem;
+  margin-top: 0.6rem;
+  border-radius: 4px;
+}
+
+.result-card .result-name {
+  font-weight: 700;
+  color: var(--navy);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.result-card .result-meta {
+  font-size: 0.8rem;
+  color: #8A7A5C;
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.chat-input-row {
+  display: flex;
+  gap: 0.6rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1rem;
+}
+
+#chat-input {
+  flex: 1;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.95rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #FFFFFF;
+  color: var(--ink);
+}
+
+#chat-input:focus {
+  outline: 2px solid var(--navy);
+  outline-offset: 1px;
+}
+
+.chat-input-row button {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  background: var(--navy);
+  color: var(--paper);
+  border: none;
+  border-radius: var(--radius);
+  padding: 0 1.3rem;
+  cursor: pointer;
+}
+
+.chat-input-row button:hover {
+  background: #14262F;
+}
+
+.site-footer {
+  text-align: center;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.75rem;
+  color: #8A9399;
+  padding: 1rem;
+}
+
+.site-footer p {
+  margin: 0.15rem 0;
+}
+
+.site-footer .credit {
+  color: var(--brass);
+  font-weight: 700;
+}
+
+@media (max-width: 480px) {
+  .message {
+    max-width: 92%;
+  }
+}

@@ -1,0 +1,1559 @@
+[
+  {
+    "id": "FBL-F1-R01",
+    "building": "FE Building (Late Govind Kashinath Patil)",
+    "floor": "1st Floor",
+    "category": "Utility",
+    "name": "Water Point",
+    "roomNo": null,
+    "location": "This water cooler is placed on the right side of the lift on the ground floor of the FE building."
+  },
+  {
+    "id": "FBL-F1-R02",
+    "building": "FE Building (Late Govind Kashinath Patil)",
+    "floor": "1st Floor",
+    "category": "Utility",
+    "name": "Lift",
+    "roomNo": null,
+    "location": "This lift is just to the left of the boys' washroom on ground floor of FE building."
+  },
+  {
+    "id": "FBL-F1-R03",
+    "building": "FE Building (Late Govind Kashinath Patil)",
+    "floor": "1st Floor",
+    "category": "Office",
+    "name": "FE Staff Room (1)",
+    "roomNo": null,
+    "location": "The 1st FE staff room is just to the left of the HOD's cabin on ground floor of FE building."
+  },
+  {
+    "id": "FBL-F1-R04",
+    "building": "FE Building (Late Govind Kashinath Patil)",
+    "floor": "1st Floor",
+    "category": "Office",
+    "name": "HOD Office",
+    "roomNo": null,
+    "location": "The FE HOD's office is just to the right of the 1st FE staff room on the ground floor of the FE building."
+  },
+  {
+    "id": "FBL-F1-R05",
+    "building": "FE Building (Late Govind Kashinath Patil)",
+    "floor": "1st Floor",
+    "category": "Office",
+    "name": "Staff Room (2)",
+    "roomNo": null,
+    "location": "The 2nd FE staff room is just to the right of the HOD's cabin on the ground floor."
+  },
+  {
+    "id": "FBL-F1-R06",
+    "building": "FE Building (Late Govind Kashinath Patil)",
+    "floor": "1st Floor",
+    "category": "Washroom",
+    "name": "Ladies Toilet",
+    "roomNo": null,
+    "location": "The ladies' toilet on the ground floor of the FE building is just to the left of the 3rd staff room."
+  },
+  {
+    "id": "FBL-F1-R07",
+    "building": "FE Building (Late Govind Kashinath Patil)",
+    "floor": "1st Floor",
+    "category": "Office",
+    "name": "Staff Room (3)",
+    "roomNo": null,
+    "location": "The 3rd staff room is just opposite the 2nd staff room and to the right of the ladies' washroom."
+  },
+  {
+    "id": "FBL-F1-R08",
+    "building": "FE Building (Late Govind Kashinath Patil)",
+    "floor": "1st Floor",
+    "category": "Washroom",
+    "name": "Gents Toilet",
+    "roomNo": null,
+    "location": "The gents' toilet is opposite the 1st staff room and to the left of the lift on the ground floor of the FE building."
+  },
+  {
+    "id": "FBL-F2-R01",
+    "building": "FE Building (Late Govind Kashinath Patil)",
+    "floor": "2nd Floor",
+    "category": "Washroom",
+    "name": "Gents Toilet",
+    "roomNo": null,
+    "location": "The gents' toilet is on the 1st floor, opposite the 201 classroom and to the left of the lift."
+  },
+  {
+    "id": "FBL-F2-R02",
+    "building": "FE Building (Late Govind Kashinath Patil)",
+    "floor": "2nd Floor",
+    "category": "Classroom",
+    "name": "Classrooms",
+    "roomNo": "201, 202, 203",
+    "location": "201,202&203 - these classrooms of FE bulding are opposite to gents toilet"
+  },
+  {
+    "id": "FBL-F2-R03",
+    "building": "FE Building (Late Govind Kashinath Patil)",
+    "floor": "2nd Floor",
+    "category": "Washroom",
+    "name": "Ladies Toilet",
+    "roomNo": null,
+    "location": "ladies toilet is on the left side of the mechanical lab"
+  },
+  {
+    "id": "FBL-F2-R04",
+    "building": "FE Building (Late Govind Kashinath Patil)",
+    "floor": "2nd Floor",
+    "category": "Lab",
+    "name": "Mechanical Lab",
+    "roomNo": null,
+    "location": "mechanical lab is on the right side of the ladies washroom"
+  },
+  {
+    "id": "FBL-F3-R01",
+    "building": "FE Building (Late Govind Kashinath Patil)",
+    "floor": "3rd Floor",
+    "category": "Lab",
+    "name": "Computer Lab",
+    "roomNo": "301A",
+    "location": "COMPUTER LAB"
+  },
+  {
+    "id": "FBL-F3-R02",
+    "building": "FE Building (Late Govind Kashinath Patil)",
+    "floor": "3rd Floor",
+    "category": "Other",
+    "name": "Centre",
+    "roomNo": "301B",
+    "location": "COMPUTER LAB"
+  },
+  {
+    "id": "FBL-F3-R03",
+    "building": "FE Building (Late Govind Kashinath Patil)",
+    "floor": "3rd Floor",
+    "category": "Classroom",
+    "name": "Classroom",
+    "roomNo": "302",
+    "location": "302 CLASSROOM is on right side of computer lab"
+  },
+  {
+    "id": "FBL-F3-R04",
+    "building": "FE Building (Late Govind Kashinath Patil)",
+    "floor": "3rd Floor",
+    "category": "Washroom",
+    "name": "Ladies Toilet",
+    "roomNo": null,
+    "location": "ladies toilet is on the left side of the software lab"
+  },
+  {
+    "id": "FBL-F3-R05",
+    "building": "FE Building (Late Govind Kashinath Patil)",
+    "floor": "3rd Floor",
+    "category": "Lab",
+    "name": "Software Lab",
+    "roomNo": null,
+    "location": "software lab is right side of ladies toilet"
+  },
+  {
+    "id": "FBL-F3-R06",
+    "building": "FE Building (Late Govind Kashinath Patil)",
+    "floor": "3rd Floor",
+    "category": "Washroom",
+    "name": "Gents Toilet",
+    "roomNo": null,
+    "location": "Gents toilet is opposite to computer lab "
+  },
+  {
+    "id": "FBL-F4-R01",
+    "building": "FE Building (Late Govind Kashinath Patil)",
+    "floor": "4th Floor",
+    "category": "Washroom",
+    "name": "Gents Toilet",
+    "roomNo": null,
+    "location": "Gents toilet is opposite to 401,402 "
+  },
+  {
+    "id": "FBL-F4-R02",
+    "building": "FE Building (Late Govind Kashinath Patil)",
+    "floor": "4th Floor",
+    "category": "Classroom",
+    "name": "Classrooms",
+    "roomNo": "401, 402, 403",
+    "location": "room number 401,402 are opposite to the gents toilet"
+  },
+  {
+    "id": "FBL-F4-R03",
+    "building": "FE Building (Late Govind Kashinath Patil)",
+    "floor": "4th Floor",
+    "category": "Washroom",
+    "name": "Ladies Toilet",
+    "roomNo": null,
+    "location": "ladies toilet is on right side of room no.403"
+  },
+  {
+    "id": "FBL-F4-R04",
+    "building": "FE Building (Late Govind Kashinath Patil)",
+    "floor": "4th Floor",
+    "category": "Utility",
+    "name": "Water Point",
+    "roomNo": null,
+    "location": "water point is on right side of the lift"
+  },
+  {
+    "id": "FBL-F5-R01",
+    "building": "FE Building (Late Govind Kashinath Patil)",
+    "floor": "5th Floor",
+    "category": "Classroom",
+    "name": "Classrooms",
+    "roomNo": "501, 502",
+    "location": "room number 501,502 are opposite to the gents toilet"
+  },
+  {
+    "id": "FBL-F5-R02",
+    "building": "FE Building (Late Govind Kashinath Patil)",
+    "floor": "5th Floor",
+    "category": "Washroom",
+    "name": "Ladies Toilet",
+    "roomNo": null,
+    "location": "ladies toilet is on the left side from electronics lab"
+  },
+  {
+    "id": "FBL-F5-R03",
+    "building": "FE Building (Late Govind Kashinath Patil)",
+    "floor": "5th Floor",
+    "category": "Washroom",
+    "name": "Gents Toilet",
+    "roomNo": null,
+    "location": "Gents toilet is opposite to 501"
+  },
+  {
+    "id": "FBL-F5-R04",
+    "building": "FE Building (Late Govind Kashinath Patil)",
+    "floor": "5th Floor",
+    "category": "Lab",
+    "name": "Electronics Lab",
+    "roomNo": null,
+    "location": "electronics lab of FE is on right hand side from 501"
+  },
+  {
+    "id": "FBL-F67-R01",
+    "building": "FE Building (Late Govind Kashinath Patil)",
+    "floor": "6th & 7th Floor",
+    "category": "Other",
+    "name": "Under Construction",
+    "roomNo": null,
+    "location": "currently in under consruction"
+  },
+  {
+    "id": "BH-F1-R01",
+    "building": "Boys Hostel",
+    "floor": "1st Floor (A Wing)",
+    "category": "Room",
+    "name": "8 Rooms",
+    "roomNo": "A001 - A008",
+    "location": "8 Rooms (Room A001 - A008) is located on the 1st Floor (A Wing) of Boys Hostel."
+  },
+  {
+    "id": "BH-F1-R02",
+    "building": "Boys Hostel",
+    "floor": "1st Floor (A Wing)",
+    "category": "Utility",
+    "name": "Water Point",
+    "roomNo": null,
+    "location": "Water Point is located on the 1st Floor (A Wing) of Boys Hostel."
+  },
+  {
+    "id": "BH-F2-R01",
+    "building": "Boys Hostel",
+    "floor": "2nd Floor (A Wing)",
+    "category": "Room",
+    "name": "8 Rooms",
+    "roomNo": "A101 - A108",
+    "location": "8 Rooms (Room A101 - A108) is located on the 2nd Floor (A Wing) of Boys Hostel."
+  },
+  {
+    "id": "BH-F2-R02",
+    "building": "Boys Hostel",
+    "floor": "2nd Floor (A Wing)",
+    "category": "Utility",
+    "name": "Water Point",
+    "roomNo": null,
+    "location": "Water Point is located on the 2nd Floor (A Wing) of Boys Hostel."
+  },
+  {
+    "id": "BH-F3-R01",
+    "building": "Boys Hostel",
+    "floor": "3rd Floor (A Wing)",
+    "category": "Room",
+    "name": "8 Rooms",
+    "roomNo": "A201 - A208",
+    "location": "8 Rooms (Room A201 - A208) is located on the 3rd Floor (A Wing) of Boys Hostel."
+  },
+  {
+    "id": "BH-FTE-R01",
+    "building": "Boys Hostel",
+    "floor": "Terrace (A Wing)",
+    "category": "Other",
+    "name": "Terrace",
+    "roomNo": null,
+    "location": "Terrace is located on the Terrace (A Wing) of Boys Hostel."
+  },
+  {
+    "id": "BH-F1-R03",
+    "building": "Boys Hostel",
+    "floor": "1st Floor (B Wing)",
+    "category": "Office",
+    "name": "Hostel Office",
+    "roomNo": null,
+    "location": "Hostel Office is located on the 1st Floor (B Wing) of Boys Hostel."
+  },
+  {
+    "id": "BH-F1-R04",
+    "building": "Boys Hostel",
+    "floor": "1st Floor (B Wing)",
+    "category": "Office",
+    "name": "Director Office",
+    "roomNo": "001 / 002",
+    "location": "Director Office (Room 001 / 002) is located on the 1st Floor (B Wing) of Boys Hostel."
+  },
+  {
+    "id": "BH-F1-R05",
+    "building": "Boys Hostel",
+    "floor": "1st Floor (B Wing)",
+    "category": "Room",
+    "name": "2 Rooms Reserved for Foreign Students",
+    "roomNo": null,
+    "location": "2 Rooms Reserved for Foreign Students is located on the 1st Floor (B Wing) of Boys Hostel."
+  },
+  {
+    "id": "BH-F1-R06",
+    "building": "Boys Hostel",
+    "floor": "1st Floor (B Wing)",
+    "category": "Room",
+    "name": "8 Rooms with Toilet & Wash",
+    "roomNo": "B003 - B005",
+    "location": "Numbering unclear in original notes (8 rooms listed but only range B003-005 given) - please verify"
+  },
+  {
+    "id": "BH-F1-R07",
+    "building": "Boys Hostel",
+    "floor": "1st Floor (B Wing)",
+    "category": "Utility",
+    "name": "Water Point",
+    "roomNo": null,
+    "location": "Water Point is located on the 1st Floor (B Wing) of Boys Hostel."
+  },
+  {
+    "id": "BH-F2-R03",
+    "building": "Boys Hostel",
+    "floor": "2nd Floor (B Wing)",
+    "category": "Room",
+    "name": "8 Rooms with Toilet/Bath",
+    "roomNo": "B101 - B108",
+    "location": "8 Rooms with Toilet/Bath (Room B101 - B108) is located on the 2nd Floor (B Wing) of Boys Hostel."
+  },
+  {
+    "id": "BH-F2-R04",
+    "building": "Boys Hostel",
+    "floor": "2nd Floor (B Wing)",
+    "category": "Utility",
+    "name": "Electric Room",
+    "roomNo": null,
+    "location": "Electric Room is located on the 2nd Floor (B Wing) of Boys Hostel."
+  },
+  {
+    "id": "BH-F3-R02",
+    "building": "Boys Hostel",
+    "floor": "3rd Floor (B Wing)",
+    "category": "Room",
+    "name": "8 Rooms with Toilet/Bath",
+    "roomNo": "B201 - B208",
+    "location": "8 Rooms with Toilet/Bath (Room B201 - B208) is located on the 3rd Floor (B Wing) of Boys Hostel."
+  },
+  {
+    "id": "BH-FTE-R02",
+    "building": "Boys Hostel",
+    "floor": "Terrace (B Wing)",
+    "category": "Other",
+    "name": "Terrace - Gym & Reading Hall",
+    "roomNo": null,
+    "location": "Terrace - Gym & Reading Hall is located on the Terrace (B Wing) of Boys Hostel."
+  },
+  {
+    "id": "GH-F1-R01",
+    "building": "Girls Hostel",
+    "floor": "1st Floor",
+    "category": "Room",
+    "name": "Rooms with Toilet/Bath",
+    "roomNo": "201 - 215",
+    "location": "Building name not labeled on this page - assumed Girls Hostel; please verify"
+  },
+  {
+    "id": "GH-F1-R02",
+    "building": "Girls Hostel",
+    "floor": "1st Floor",
+    "category": "Other",
+    "name": "Study Hall",
+    "roomNo": null,
+    "location": "Study Hall is located on the 1st Floor of Girls Hostel."
+  },
+  {
+    "id": "GH-F2-R01",
+    "building": "Girls Hostel",
+    "floor": "2nd Floor",
+    "category": "Room",
+    "name": "Rooms",
+    "roomNo": "301 - 315",
+    "location": "Rooms (Room 301 - 315) is located on the 2nd Floor of Girls Hostel."
+  },
+  {
+    "id": "GH-F2-R02",
+    "building": "Girls Hostel",
+    "floor": "2nd Floor",
+    "category": "Other",
+    "name": "Study Hall",
+    "roomNo": null,
+    "location": "Study Hall is located on the 2nd Floor of Girls Hostel."
+  },
+  {
+    "id": "NB-F0-R01",
+    "building": "New Building",
+    "floor": "0th Floor",
+    "category": "Utility",
+    "name": "Lift",
+    "roomNo": null,
+    "location": "Lift is located on the 0th Floor of New Building."
+  },
+  {
+    "id": "NB-F0-R02",
+    "building": "New Building",
+    "floor": "0th Floor",
+    "category": "Other",
+    "name": "Parking",
+    "roomNo": null,
+    "location": "Parking is located on the 0th Floor of New Building."
+  },
+  {
+    "id": "NB-F0-R03",
+    "building": "New Building",
+    "floor": "0th Floor",
+    "category": "Office",
+    "name": "Science/Commerce Office",
+    "roomNo": null,
+    "location": "Science/Commerce Office is located on the 0th Floor of New Building."
+  },
+  {
+    "id": "NB-F0-R04",
+    "building": "New Building",
+    "floor": "0th Floor",
+    "category": "Office",
+    "name": "Staff Room",
+    "roomNo": null,
+    "location": "Staff Room is located on the 0th Floor of New Building."
+  },
+  {
+    "id": "NB-F1-R01",
+    "building": "New Building",
+    "floor": "1st Floor",
+    "category": "Classroom",
+    "name": "Classrooms",
+    "roomNo": "101, 102, 103, 104",
+    "location": "Classrooms (Room 101, 102, 103, 104) is located on the 1st Floor of New Building."
+  },
+  {
+    "id": "NB-F1-R02",
+    "building": "New Building",
+    "floor": "1st Floor",
+    "category": "Office",
+    "name": "Admin Office",
+    "roomNo": null,
+    "location": "Admin Office is located on the 1st Floor of New Building."
+  },
+  {
+    "id": "NB-F1-R03",
+    "building": "New Building",
+    "floor": "1st Floor",
+    "category": "Office",
+    "name": "Principal Office",
+    "roomNo": null,
+    "location": "Principal Office is located on the 1st Floor of New Building."
+  },
+  {
+    "id": "NB-F1-R04",
+    "building": "New Building",
+    "floor": "1st Floor",
+    "category": "Other",
+    "name": "Conference Hall",
+    "roomNo": null,
+    "location": "Conference Hall is located on the 1st Floor of New Building."
+  },
+  {
+    "id": "NB-F1-R05",
+    "building": "New Building",
+    "floor": "1st Floor",
+    "category": "Office",
+    "name": "Admission & Confidential Room",
+    "roomNo": null,
+    "location": "Admission & Confidential Room is located on the 1st Floor of New Building."
+  },
+  {
+    "id": "NB-F1-R06",
+    "building": "New Building",
+    "floor": "1st Floor",
+    "category": "Office",
+    "name": "Director's Office",
+    "roomNo": null,
+    "location": "Director's Office is located on the 1st Floor of New Building."
+  },
+  {
+    "id": "NB-F1-R07",
+    "building": "New Building",
+    "floor": "1st Floor",
+    "category": "Office",
+    "name": "Student Section",
+    "roomNo": null,
+    "location": "Student Section is located on the 1st Floor of New Building."
+  },
+  {
+    "id": "NB-F1-R08",
+    "building": "New Building",
+    "floor": "1st Floor",
+    "category": "Office",
+    "name": "Accounts",
+    "roomNo": null,
+    "location": "Accounts is located on the 1st Floor of New Building."
+  },
+  {
+    "id": "NB-F1-R09",
+    "building": "New Building",
+    "floor": "1st Floor",
+    "category": "Washroom",
+    "name": "Ladies Washroom",
+    "roomNo": null,
+    "location": "Ladies Washroom is located on the 1st Floor of New Building."
+  },
+  {
+    "id": "NB-F1-R10",
+    "building": "New Building",
+    "floor": "1st Floor",
+    "category": "Washroom",
+    "name": "Washroom for Handicap",
+    "roomNo": null,
+    "location": "Washroom for Handicap is located on the 1st Floor of New Building."
+  },
+  {
+    "id": "NB-F2-R01",
+    "building": "New Building",
+    "floor": "2nd Floor",
+    "category": "Lab",
+    "name": "Computer Lab",
+    "roomNo": "1, 2, 3",
+    "location": "Computer Lab (Room 1, 2, 3) is located on the 2nd Floor of New Building."
+  },
+  {
+    "id": "NB-F2-R02",
+    "building": "New Building",
+    "floor": "2nd Floor",
+    "category": "Classroom",
+    "name": "Classrooms",
+    "roomNo": "201, 202",
+    "location": "Classrooms (Room 201, 202) is located on the 2nd Floor of New Building."
+  },
+  {
+    "id": "NB-F2-R03",
+    "building": "New Building",
+    "floor": "2nd Floor",
+    "category": "Washroom",
+    "name": "Gents Wash",
+    "roomNo": null,
+    "location": "Gents Wash is located on the 2nd Floor of New Building."
+  },
+  {
+    "id": "NB-F2-R04",
+    "building": "New Building",
+    "floor": "2nd Floor",
+    "category": "Washroom",
+    "name": "Handicap Wash",
+    "roomNo": null,
+    "location": "Handicap Wash is located on the 2nd Floor of New Building."
+  },
+  {
+    "id": "NB-F3-R01",
+    "building": "New Building",
+    "floor": "3rd Floor",
+    "category": "Classroom",
+    "name": "Classrooms",
+    "roomNo": "301, 302, 303, 304, 305, 306",
+    "location": "Classrooms (Room 301, 302, 303, 304, 305, 306) is located on the 3rd Floor of New Building."
+  },
+  {
+    "id": "NB-F3-R02",
+    "building": "New Building",
+    "floor": "3rd Floor",
+    "category": "Lab",
+    "name": "Computer Lab 4",
+    "roomNo": null,
+    "location": "Computer Lab 4 is located on the 3rd Floor of New Building."
+  },
+  {
+    "id": "NB-F3-R03",
+    "building": "New Building",
+    "floor": "3rd Floor",
+    "category": "Lab",
+    "name": "Electronics Lab",
+    "roomNo": null,
+    "location": "Electronics Lab is located on the 3rd Floor of New Building."
+  },
+  {
+    "id": "NB-F3-R04",
+    "building": "New Building",
+    "floor": "3rd Floor",
+    "category": "Washroom",
+    "name": "Ladies Wash",
+    "roomNo": null,
+    "location": "Ladies Wash is located on the 3rd Floor of New Building."
+  },
+  {
+    "id": "NB-F3-R05",
+    "building": "New Building",
+    "floor": "3rd Floor",
+    "category": "Washroom",
+    "name": "Hand Wash Area",
+    "roomNo": null,
+    "location": "Hand Wash Area is located on the 3rd Floor of New Building."
+  },
+  {
+    "id": "NB-F4-R01",
+    "building": "New Building",
+    "floor": "4th Floor",
+    "category": "Classroom",
+    "name": "Classrooms",
+    "roomNo": "401, 402",
+    "location": "Classrooms (Room 401, 402) is located on the 4th Floor of New Building."
+  },
+  {
+    "id": "NB-F4-R02",
+    "building": "New Building",
+    "floor": "4th Floor",
+    "category": "Office",
+    "name": "Staff Room",
+    "roomNo": null,
+    "location": "Staff Room is located on the 4th Floor of New Building."
+  },
+  {
+    "id": "NB-F4-R03",
+    "building": "New Building",
+    "floor": "4th Floor",
+    "category": "Other",
+    "name": "Library",
+    "roomNo": null,
+    "location": "Library is located on the 4th Floor of New Building."
+  },
+  {
+    "id": "NB-F4-R04",
+    "building": "New Building",
+    "floor": "4th Floor",
+    "category": "Other",
+    "name": "Reading Hall",
+    "roomNo": null,
+    "location": "Reading Hall is located on the 4th Floor of New Building."
+  },
+  {
+    "id": "NB-F4-R05",
+    "building": "New Building",
+    "floor": "4th Floor",
+    "category": "Other",
+    "name": "Digital Library",
+    "roomNo": null,
+    "location": "Digital Library is located on the 4th Floor of New Building."
+  },
+  {
+    "id": "NB-F4-R06",
+    "building": "New Building",
+    "floor": "4th Floor",
+    "category": "Washroom",
+    "name": "Gents Wash",
+    "roomNo": null,
+    "location": "Gents Wash is located on the 4th Floor of New Building."
+  },
+  {
+    "id": "NB-F4-R07",
+    "building": "New Building",
+    "floor": "4th Floor",
+    "category": "Washroom",
+    "name": "Hand Wash Area",
+    "roomNo": null,
+    "location": "Hand Wash Area is located on the 4th Floor of New Building."
+  },
+  {
+    "id": "MB-F0-R01",
+    "building": "Main Building",
+    "floor": "0th Floor",
+    "category": "Office",
+    "name": "College Office",
+    "roomNo": null,
+    "location": "College Office is located on the 0th Floor of Main Building."
+  },
+  {
+    "id": "MB-F0-R02",
+    "building": "Main Building",
+    "floor": "0th Floor",
+    "category": "Lab",
+    "name": "Lab 1",
+    "roomNo": null,
+    "location": "Lab 1 is located on the 0th Floor of Main Building."
+  },
+  {
+    "id": "MB-F0-R03",
+    "building": "Main Building",
+    "floor": "0th Floor",
+    "category": "Lab",
+    "name": "Electrical Lab",
+    "roomNo": null,
+    "location": "Electrical Lab is located on the 0th Floor of Main Building."
+  },
+  {
+    "id": "MB-F0-R04",
+    "building": "Main Building",
+    "floor": "0th Floor",
+    "category": "Lab",
+    "name": "Research Lab (Electrical)",
+    "roomNo": null,
+    "location": "Research Lab (Electrical) is located on the 0th Floor of Main Building."
+  },
+  {
+    "id": "MB-F0-R05",
+    "building": "Main Building",
+    "floor": "0th Floor",
+    "category": "Washroom",
+    "name": "Ladies Wash",
+    "roomNo": null,
+    "location": "Ladies Wash is located on the 0th Floor of Main Building."
+  },
+  {
+    "id": "MB-F0-R06",
+    "building": "Main Building",
+    "floor": "0th Floor",
+    "category": "Lab",
+    "name": "Lab 2",
+    "roomNo": null,
+    "location": "Lab 2 is located on the 0th Floor of Main Building."
+  },
+  {
+    "id": "MB-F0-R07",
+    "building": "Main Building",
+    "floor": "0th Floor",
+    "category": "Lab",
+    "name": "Flexo-Gravure Lab",
+    "roomNo": null,
+    "location": "Flexo-Gravure Lab is located on the 0th Floor of Main Building."
+  },
+  {
+    "id": "MB-F0-R08",
+    "building": "Main Building",
+    "floor": "0th Floor",
+    "category": "Lab",
+    "name": "Lab 3",
+    "roomNo": null,
+    "location": "Lab 3 is located on the 0th Floor of Main Building."
+  },
+  {
+    "id": "MB-F0-R09",
+    "building": "Main Building",
+    "floor": "0th Floor",
+    "category": "Office",
+    "name": "HOD Cabin / MSPP Lab",
+    "roomNo": null,
+    "location": "HOD Cabin / MSPP Lab is located on the 0th Floor of Main Building."
+  },
+  {
+    "id": "MB-F0-R10",
+    "building": "Main Building",
+    "floor": "0th Floor",
+    "category": "Lab",
+    "name": "Offset/Screen Lab",
+    "roomNo": null,
+    "location": "Offset/Screen Lab is located on the 0th Floor of Main Building."
+  },
+  {
+    "id": "MB-F0-R11",
+    "building": "Main Building",
+    "floor": "0th Floor",
+    "category": "Lab",
+    "name": "Package Testing Lab",
+    "roomNo": null,
+    "location": "Package Testing Lab is located on the 0th Floor of Main Building."
+  },
+  {
+    "id": "MB-F0-R12",
+    "building": "Main Building",
+    "floor": "0th Floor",
+    "category": "Lab",
+    "name": "Binding Lab",
+    "roomNo": null,
+    "location": "Binding Lab is located on the 0th Floor of Main Building."
+  },
+  {
+    "id": "MB-F0-R13",
+    "building": "Main Building",
+    "floor": "0th Floor",
+    "category": "Washroom",
+    "name": "Gents Wash",
+    "roomNo": null,
+    "location": "Gents Wash is located on the 0th Floor of Main Building."
+  },
+  {
+    "id": "MB-F1-R01",
+    "building": "Main Building",
+    "floor": "1st Floor",
+    "category": "Utility",
+    "name": "Lift",
+    "roomNo": null,
+    "location": "Lift is located on the 1st Floor of Main Building."
+  },
+  {
+    "id": "MB-F1-R02",
+    "building": "Main Building",
+    "floor": "1st Floor",
+    "category": "Washroom",
+    "name": "Ladies Wash",
+    "roomNo": null,
+    "location": "Ladies Wash is located on the 1st Floor of Main Building."
+  },
+  {
+    "id": "MB-F1-R03",
+    "building": "Main Building",
+    "floor": "1st Floor",
+    "category": "Lab",
+    "name": "Electronics Lab 1 & 2",
+    "roomNo": null,
+    "location": "Electronics Lab 1 & 2 is located on the 1st Floor of Main Building."
+  },
+  {
+    "id": "MB-F1-R04",
+    "building": "Main Building",
+    "floor": "1st Floor",
+    "category": "Lab",
+    "name": "High Voltage Engineering Lab",
+    "roomNo": null,
+    "location": "High Voltage Engineering Lab is located on the 1st Floor of Main Building."
+  },
+  {
+    "id": "MB-F1-R05",
+    "building": "Main Building",
+    "floor": "1st Floor",
+    "category": "Classroom",
+    "name": "Classroom",
+    "roomNo": "107",
+    "location": "Classroom (Room 107) is located on the 1st Floor of Main Building."
+  },
+  {
+    "id": "MB-F1-R06",
+    "building": "Main Building",
+    "floor": "1st Floor",
+    "category": "Lab",
+    "name": "Ink Test Lab",
+    "roomNo": null,
+    "location": "Ink Test Lab is located on the 1st Floor of Main Building."
+  },
+  {
+    "id": "MB-F1-R07",
+    "building": "Main Building",
+    "floor": "1st Floor",
+    "category": "Classroom",
+    "name": "Classrooms",
+    "roomNo": "109, 110",
+    "location": "Classrooms (Room 109, 110) is located on the 1st Floor of Main Building."
+  },
+  {
+    "id": "MB-F1-R08",
+    "building": "Main Building",
+    "floor": "1st Floor",
+    "category": "Washroom",
+    "name": "Gents Toilet",
+    "roomNo": null,
+    "location": "Gents Toilet is located on the 1st Floor of Main Building."
+  },
+  {
+    "id": "MB-F1-R09",
+    "building": "Main Building",
+    "floor": "1st Floor",
+    "category": "Other",
+    "name": "Conference Hall",
+    "roomNo": "111 / 112",
+    "location": "Conference Hall (Room 111 / 112) is located on the 1st Floor of Main Building."
+  },
+  {
+    "id": "MB-F1-R10",
+    "building": "Main Building",
+    "floor": "1st Floor",
+    "category": "Lab",
+    "name": "Power System Lab",
+    "roomNo": null,
+    "location": "Power System Lab is located on the 1st Floor of Main Building."
+  },
+  {
+    "id": "MB-F1-R11",
+    "building": "Main Building",
+    "floor": "1st Floor",
+    "category": "Lab",
+    "name": "Analysis Lab",
+    "roomNo": "102",
+    "location": "Analysis Lab (Room 102) is located on the 1st Floor of Main Building."
+  },
+  {
+    "id": "MB-F1-R12",
+    "building": "Main Building",
+    "floor": "1st Floor",
+    "category": "Lab",
+    "name": "PLC Lab",
+    "roomNo": "103",
+    "location": "PLC Lab (Room 103) is located on the 1st Floor of Main Building."
+  },
+  {
+    "id": "MB-F2-R01",
+    "building": "Main Building",
+    "floor": "2nd Floor",
+    "category": "Lab",
+    "name": "Computer Lab A & B",
+    "roomNo": null,
+    "location": "Computer Lab A & B is located on the 2nd Floor of Main Building."
+  },
+  {
+    "id": "MB-F2-R02",
+    "building": "Main Building",
+    "floor": "2nd Floor",
+    "category": "Classroom",
+    "name": "Classrooms",
+    "roomNo": "204, 205, 209, 210, 212",
+    "location": "Classrooms (Room 204, 205, 209, 210, 212) is located on the 2nd Floor of Main Building."
+  },
+  {
+    "id": "MB-F2-R03",
+    "building": "Main Building",
+    "floor": "2nd Floor",
+    "category": "Lab",
+    "name": "Refrigeration & Air Conditioning Lab",
+    "roomNo": null,
+    "location": "Refrigeration & Air Conditioning Lab is located on the 2nd Floor of Main Building."
+  },
+  {
+    "id": "MB-F2-R04",
+    "building": "Main Building",
+    "floor": "2nd Floor",
+    "category": "Utility",
+    "name": "Lift",
+    "roomNo": null,
+    "location": "Lift is located on the 2nd Floor of Main Building."
+  },
+  {
+    "id": "MB-F2-R05",
+    "building": "Main Building",
+    "floor": "2nd Floor",
+    "category": "Washroom",
+    "name": "Gents Toilet",
+    "roomNo": null,
+    "location": "Gents Toilet is located on the 2nd Floor of Main Building."
+  },
+  {
+    "id": "MB-F2-R06",
+    "building": "Main Building",
+    "floor": "2nd Floor",
+    "category": "Washroom",
+    "name": "Ladies Toilet",
+    "roomNo": null,
+    "location": "Ladies Toilet is located on the 2nd Floor of Main Building."
+  },
+  {
+    "id": "MB-F2-R07",
+    "building": "Main Building",
+    "floor": "2nd Floor",
+    "category": "Lab",
+    "name": "Engineering Chemistry Lab",
+    "roomNo": null,
+    "location": "Engineering Chemistry Lab is located on the 2nd Floor of Main Building."
+  },
+  {
+    "id": "MB-F2-R08",
+    "building": "Main Building",
+    "floor": "2nd Floor",
+    "category": "Office",
+    "name": "Exam Control Room",
+    "roomNo": "206",
+    "location": "Exam Control Room (Room 206) is located on the 2nd Floor of Main Building."
+  },
+  {
+    "id": "MB-F2-R09",
+    "building": "Main Building",
+    "floor": "2nd Floor",
+    "category": "Office",
+    "name": "MBA Department",
+    "roomNo": "207",
+    "location": "MBA Department (Room 207) is located on the 2nd Floor of Main Building."
+  },
+  {
+    "id": "MB-F2-R10",
+    "building": "Main Building",
+    "floor": "2nd Floor",
+    "category": "Lab",
+    "name": "Heat Transfer Lab",
+    "roomNo": "203",
+    "location": "Heat Transfer Lab (Room 203) is located on the 2nd Floor of Main Building."
+  },
+  {
+    "id": "MB-F2-R11",
+    "building": "Main Building",
+    "floor": "2nd Floor",
+    "category": "Lab",
+    "name": "Dynamics of Machines / Kinematics Lab",
+    "roomNo": "282",
+    "location": "Dynamics of Machines / Kinematics Lab (Room 282) is located on the 2nd Floor of Main Building."
+  },
+  {
+    "id": "MB-F3-R01",
+    "building": "Main Building",
+    "floor": "3rd Floor",
+    "category": "Lab",
+    "name": "Software Lab",
+    "roomNo": "301",
+    "location": "Software Lab (Room 301) is located on the 3rd Floor of Main Building."
+  },
+  {
+    "id": "MB-F3-R02",
+    "building": "Main Building",
+    "floor": "3rd Floor",
+    "category": "Lab",
+    "name": "Software Lab (Lab A/B)",
+    "roomNo": "302",
+    "location": "Software Lab (Lab A/B) (Room 302) is located on the 3rd Floor of Main Building."
+  },
+  {
+    "id": "MB-F3-R03",
+    "building": "Main Building",
+    "floor": "3rd Floor",
+    "category": "Washroom",
+    "name": "Ladies Wash",
+    "roomNo": null,
+    "location": "Ladies Wash is located on the 3rd Floor of Main Building."
+  },
+  {
+    "id": "MB-F3-R04",
+    "building": "Main Building",
+    "floor": "3rd Floor",
+    "category": "Room",
+    "name": "Rooms",
+    "roomNo": "304, 305",
+    "location": "Rooms (Room 304, 305) is located on the 3rd Floor of Main Building."
+  },
+  {
+    "id": "MB-F3-R05",
+    "building": "Main Building",
+    "floor": "3rd Floor",
+    "category": "Other",
+    "name": "Girls Common Room",
+    "roomNo": "306",
+    "location": "Girls Common Room (Room 306) is located on the 3rd Floor of Main Building."
+  },
+  {
+    "id": "MB-F3-R06",
+    "building": "Main Building",
+    "floor": "3rd Floor",
+    "category": "Lab",
+    "name": "Software Lab",
+    "roomNo": "307",
+    "location": "Software Lab (Room 307) is located on the 3rd Floor of Main Building."
+  },
+  {
+    "id": "MB-F3-R07",
+    "building": "Main Building",
+    "floor": "3rd Floor",
+    "category": "Utility",
+    "name": "Lift",
+    "roomNo": null,
+    "location": "Lift is located on the 3rd Floor of Main Building."
+  },
+  {
+    "id": "MB-F3-R08",
+    "building": "Main Building",
+    "floor": "3rd Floor",
+    "category": "Office",
+    "name": "Dept. of IT",
+    "roomNo": null,
+    "location": "Dept. of IT is located on the 3rd Floor of Main Building."
+  },
+  {
+    "id": "MB-F3-R09",
+    "building": "Main Building",
+    "floor": "3rd Floor",
+    "category": "Office",
+    "name": "Dept. of Computer",
+    "roomNo": null,
+    "location": "Dept. of Computer is located on the 3rd Floor of Main Building."
+  },
+  {
+    "id": "MB-F3-R10",
+    "building": "Main Building",
+    "floor": "3rd Floor",
+    "category": "Washroom",
+    "name": "Gents Toilet",
+    "roomNo": null,
+    "location": "Gents Toilet is located on the 3rd Floor of Main Building."
+  },
+  {
+    "id": "MB-F3-R11",
+    "building": "Main Building",
+    "floor": "3rd Floor",
+    "category": "Lab",
+    "name": "Software Lab 1 & 2",
+    "roomNo": "311, 312",
+    "location": "Software Lab 1 & 2 (Room 311, 312) is located on the 3rd Floor of Main Building."
+  },
+  {
+    "id": "MB-F3-R12",
+    "building": "Main Building",
+    "floor": "3rd Floor",
+    "category": "Lab",
+    "name": "Software Lab 4",
+    "roomNo": "307",
+    "location": "Room number appears to repeat 307 in original notes - please verify"
+  },
+  {
+    "id": "MB-F3-R13",
+    "building": "Main Building",
+    "floor": "3rd Floor",
+    "category": "Lab",
+    "name": "Software Lab 5 & 6",
+    "roomNo": "309, 316",
+    "location": "Software Lab 5 & 6 (Room 309, 316) is located on the 3rd Floor of Main Building."
+  },
+  {
+    "id": "MB-F4-R01",
+    "building": "Main Building",
+    "floor": "4th Floor",
+    "category": "Office",
+    "name": "Dept. of ENTC",
+    "roomNo": null,
+    "location": "Dept. of ENTC is located on the 4th Floor of Main Building."
+  },
+  {
+    "id": "MB-F4-R02",
+    "building": "Main Building",
+    "floor": "4th Floor",
+    "category": "Lab",
+    "name": "Dept. of Computer / Lab 2",
+    "roomNo": "409",
+    "location": "Dept. of Computer / Lab 2 (Room 409) is located on the 4th Floor of Main Building."
+  },
+  {
+    "id": "MB-F4-R03",
+    "building": "Main Building",
+    "floor": "4th Floor",
+    "category": "Classroom",
+    "name": "Classrooms",
+    "roomNo": "409 - 410",
+    "location": "Classrooms (Room 409 - 410) is located on the 4th Floor of Main Building."
+  },
+  {
+    "id": "MB-F4-R04",
+    "building": "Main Building",
+    "floor": "4th Floor",
+    "category": "Washroom",
+    "name": "Gents Toilet",
+    "roomNo": null,
+    "location": "Gents Toilet is located on the 4th Floor of Main Building."
+  },
+  {
+    "id": "MB-F4-R05",
+    "building": "Main Building",
+    "floor": "4th Floor",
+    "category": "Lab",
+    "name": "FOC Cabin",
+    "roomNo": "412",
+    "location": "FOC Cabin (Room 412) is located on the 4th Floor of Main Building."
+  },
+  {
+    "id": "MB-F4-R06",
+    "building": "Main Building",
+    "floor": "4th Floor",
+    "category": "Lab",
+    "name": "Communication Lab",
+    "roomNo": "411",
+    "location": "Communication Lab (Room 411) is located on the 4th Floor of Main Building."
+  },
+  {
+    "id": "MB-F4-R07",
+    "building": "Main Building",
+    "floor": "4th Floor",
+    "category": "Lab",
+    "name": "Digital Electronics Lab",
+    "roomNo": "401",
+    "location": "Digital Electronics Lab (Room 401) is located on the 4th Floor of Main Building."
+  },
+  {
+    "id": "MB-F4-R08",
+    "building": "Main Building",
+    "floor": "4th Floor",
+    "category": "Office",
+    "name": "Director Rajendra Kadukar's Office",
+    "roomNo": null,
+    "location": "Director Rajendra Kadukar's Office is located on the 4th Floor of Main Building."
+  },
+  {
+    "id": "MB-F4-R09",
+    "building": "Main Building",
+    "floor": "4th Floor",
+    "category": "Lab",
+    "name": "Analog Electronics Lab",
+    "roomNo": "401",
+    "location": "Analog Electronics Lab (Room 401) is located on the 4th Floor of Main Building."
+  },
+  {
+    "id": "MB-F4-R10",
+    "building": "Main Building",
+    "floor": "4th Floor",
+    "category": "Lab",
+    "name": "Computer Lab 1 & 2",
+    "roomNo": "402, 403",
+    "location": "Computer Lab 1 & 2 (Room 402, 403) is located on the 4th Floor of Main Building."
+  },
+  {
+    "id": "MB-F4-R11",
+    "building": "Main Building",
+    "floor": "4th Floor",
+    "category": "Washroom",
+    "name": "Ladies Wash",
+    "roomNo": null,
+    "location": "Ladies Wash is located on the 4th Floor of Main Building."
+  },
+  {
+    "id": "MB-F4-R12",
+    "building": "Main Building",
+    "floor": "4th Floor",
+    "category": "Classroom",
+    "name": "Classrooms",
+    "roomNo": "404, 405",
+    "location": "Classrooms (Room 404, 405) is located on the 4th Floor of Main Building."
+  },
+  {
+    "id": "MB-F4-R13",
+    "building": "Main Building",
+    "floor": "4th Floor",
+    "category": "Lab",
+    "name": "VLSI Design Lab",
+    "roomNo": "406",
+    "location": "VLSI Design Lab (Room 406) is located on the 4th Floor of Main Building."
+  },
+  {
+    "id": "MSP-F0-R01",
+    "building": "Muktangan School & Playground",
+    "floor": "Ground",
+    "category": "Office",
+    "name": "Muktangan School Office",
+    "roomNo": null,
+    "location": "Muktangan School Office is located on the Ground of Muktangan School & Playground."
+  },
+  {
+    "id": "MSP-F0-R02",
+    "building": "Muktangan School & Playground",
+    "floor": "Ground",
+    "category": "Office",
+    "name": "Muktangan College Office",
+    "roomNo": null,
+    "location": "Muktangan College Office is located on the Ground of Muktangan School & Playground."
+  },
+  {
+    "id": "MSP-F0-R03",
+    "building": "Muktangan School & Playground",
+    "floor": "Ground",
+    "category": "Other",
+    "name": "3 Floors (School Building)",
+    "roomNo": null,
+    "location": "3 Floors (School Building) is located on the Ground of Muktangan School & Playground."
+  },
+  {
+    "id": "MSP-F0-R04",
+    "building": "Muktangan School & Playground",
+    "floor": "Ground",
+    "category": "Utility",
+    "name": "School-College & Water Point",
+    "roomNo": null,
+    "location": "School-College & Water Point is located on the Ground of Muktangan School & Playground."
+  },
+  {
+    "id": "MSP-F0-R05",
+    "building": "Muktangan School & Playground",
+    "floor": "Ground",
+    "category": "Other",
+    "name": "Exit Gate",
+    "roomNo": null,
+    "location": "Exit Gate is located on the Ground of Muktangan School & Playground."
+  },
+  {
+    "id": "MSP-F0-R06",
+    "building": "Muktangan School & Playground",
+    "floor": "Ground",
+    "category": "Other",
+    "name": "Kabaddi Ground",
+    "roomNo": null,
+    "location": "Kabaddi Ground is located on the Ground of Muktangan School & Playground."
+  },
+  {
+    "id": "MSP-F0-R07",
+    "building": "Muktangan School & Playground",
+    "floor": "Ground",
+    "category": "Other",
+    "name": "Archery Ground",
+    "roomNo": null,
+    "location": "Handwriting unclear, read as 'Arch. Gnd'"
+  },
+  {
+    "id": "MSP-F0-R08",
+    "building": "Muktangan School & Playground",
+    "floor": "Ground",
+    "category": "Other",
+    "name": "Stage",
+    "roomNo": null,
+    "location": "Stage is located on the Ground of Muktangan School & Playground."
+  },
+  {
+    "id": "MSP-F0-R09",
+    "building": "Muktangan School & Playground",
+    "floor": "Ground",
+    "category": "Other",
+    "name": "Football Ground",
+    "roomNo": null,
+    "location": "Football Ground is located on the Ground of Muktangan School & Playground."
+  },
+  {
+    "id": "MSP-F0-R10",
+    "building": "Muktangan School & Playground",
+    "floor": "Ground",
+    "category": "Washroom",
+    "name": "Washroom",
+    "roomNo": null,
+    "location": "Washroom is located on the Ground of Muktangan School & Playground."
+  },
+  {
+    "id": "MSP-F0-R11",
+    "building": "Muktangan School & Playground",
+    "floor": "Ground",
+    "category": "Other",
+    "name": "Rangmanch",
+    "roomNo": null,
+    "location": "Rangmanch is located on the Ground of Muktangan School & Playground."
+  },
+  {
+    "id": "MSP-F0-R12",
+    "building": "Muktangan School & Playground",
+    "floor": "Ground",
+    "category": "Other",
+    "name": "Rang Peeth",
+    "roomNo": null,
+    "location": "Rang Peeth is located on the Ground of Muktangan School & Playground."
+  },
+  {
+    "id": "AB-F0-R01",
+    "building": "Auditorium Building",
+    "floor": "0th Floor",
+    "category": "Other",
+    "name": "Workshop",
+    "roomNo": null,
+    "location": "Workshop is located on the 0th Floor of Auditorium Building."
+  },
+  {
+    "id": "AB-F0-R02",
+    "building": "Auditorium Building",
+    "floor": "0th Floor",
+    "category": "Utility",
+    "name": "Lift",
+    "roomNo": null,
+    "location": "Lift is located on the 0th Floor of Auditorium Building."
+  },
+  {
+    "id": "AB-F0-R03",
+    "building": "Auditorium Building",
+    "floor": "0th Floor",
+    "category": "Lab",
+    "name": "Computer Lab",
+    "roomNo": "3, 4",
+    "location": "Computer Lab (Room 3, 4) is located on the 0th Floor of Auditorium Building."
+  },
+  {
+    "id": "AB-F0-R04",
+    "building": "Auditorium Building",
+    "floor": "0th Floor",
+    "category": "Other",
+    "name": "3D Printing",
+    "roomNo": null,
+    "location": "3D Printing is located on the 0th Floor of Auditorium Building."
+  },
+  {
+    "id": "AB-F1-R01",
+    "building": "Auditorium Building",
+    "floor": "1st Floor",
+    "category": "Other",
+    "name": "Library",
+    "roomNo": null,
+    "location": "Library is located on the 1st Floor of Auditorium Building."
+  },
+  {
+    "id": "AB-F1-R02",
+    "building": "Auditorium Building",
+    "floor": "1st Floor",
+    "category": "Other",
+    "name": "Industry Training Cell",
+    "roomNo": null,
+    "location": "Industry Training Cell is located on the 1st Floor of Auditorium Building."
+  },
+  {
+    "id": "AB-F2-R01",
+    "building": "Auditorium Building",
+    "floor": "2nd Floor",
+    "category": "Other",
+    "name": "Auditorium",
+    "roomNo": null,
+    "location": "Auditorium is located on the 2nd Floor of Auditorium Building."
+  },
+  {
+    "id": "AB-F3-R01",
+    "building": "Auditorium Building",
+    "floor": "3rd Floor",
+    "category": "Other",
+    "name": "(Details not recorded)",
+    "roomNo": null,
+    "location": "No details written on this floor in original notes"
+  },
+  {
+    "id": "VBS-F0-R01",
+    "building": "Vastu Bhandar (Store)",
+    "floor": "Ground",
+    "category": "Other",
+    "name": "Xerox Shop",
+    "roomNo": null,
+    "location": "Xerox Shop is located on the Ground of Vastu Bhandar (Store)."
+  },
+  {
+    "id": "VBS-F0-R02",
+    "building": "Vastu Bhandar (Store)",
+    "floor": "Ground",
+    "category": "Other",
+    "name": "Stationery",
+    "roomNo": null,
+    "location": "Stationery is located on the Ground of Vastu Bhandar (Store)."
+  },
+  {
+    "id": "VBS-F0-R03",
+    "building": "Vastu Bhandar (Store)",
+    "floor": "Ground",
+    "category": "Other",
+    "name": "Parking",
+    "roomNo": null,
+    "location": "Parking is located on the Ground of Vastu Bhandar (Store)."
+  },
+  {
+    "id": "MLB-F0-R01",
+    "building": "Mechanical Lab Building",
+    "floor": "Ground",
+    "category": "Lab",
+    "name": "Applied Thermodynamics Lab",
+    "roomNo": null,
+    "location": "Applied Thermodynamics Lab is located on the Ground of Mechanical Lab Building."
+  },
+  {
+    "id": "MLB-F0-R02",
+    "building": "Mechanical Lab Building",
+    "floor": "Ground",
+    "category": "Utility",
+    "name": "Transformer Room",
+    "roomNo": null,
+    "location": "Transformer Room is located on the Ground of Mechanical Lab Building."
+  },
+  {
+    "id": "MLB-F0-R03",
+    "building": "Mechanical Lab Building",
+    "floor": "Ground",
+    "category": "Utility",
+    "name": "Generator Room",
+    "roomNo": null,
+    "location": "Generator Room is located on the Ground of Mechanical Lab Building."
+  },
+  {
+    "id": "MLB-F0-R04",
+    "building": "Mechanical Lab Building",
+    "floor": "Ground",
+    "category": "Other",
+    "name": "Workshop",
+    "roomNo": null,
+    "location": "Workshop is located on the Ground of Mechanical Lab Building."
+  },
+  {
+    "id": "PA-F0-R01",
+    "building": "Parking Area",
+    "floor": "Ground",
+    "category": "Other",
+    "name": "2-Wheeler Parking",
+    "roomNo": null,
+    "location": "2-Wheeler Parking is located on the Ground of Parking Area."
+  },
+  {
+    "id": "PA-F0-R02",
+    "building": "Parking Area",
+    "floor": "Ground",
+    "category": "Other",
+    "name": "4-Wheeler Parking",
+    "roomNo": null,
+    "location": "4-Wheeler Parking is located on the Ground of Parking Area."
+  },
+  {
+    "id": "PA-F0-R03",
+    "building": "Parking Area",
+    "floor": "Ground",
+    "category": "Other",
+    "name": "Cycle Parking",
+    "roomNo": null,
+    "location": "Cycle Parking is located on the Ground of Parking Area."
+  },
+  {
+    "id": "SB-F0-R01",
+    "building": "Shadaygu Building",
+    "floor": "0th Floor",
+    "category": "Office",
+    "name": "Office",
+    "roomNo": "114",
+    "location": "office of ladies hostel is on the ground floor of shatayu buliding"
+  },
+  {
+    "id": "SB-F0-R02",
+    "building": "Shadaygu Building",
+    "floor": "0th Floor",
+    "category": "Other",
+    "name": "Reception Room",
+    "roomNo": "105",
+    "location": "Reception Room of ladies hostel is on the ground floor of shatayu buliding"
+  },
+  {
+    "id": "SB-F0-R03",
+    "building": "Shadaygu Building",
+    "floor": "0th Floor",
+    "category": "Other",
+    "name": "Kitchen",
+    "roomNo": "104",
+    "location": "Kitchen of ladies hostel is on the ground floor of shatayu buliding"
+  },
+  {
+    "id": "SB-F0-R04",
+    "building": "Shadaygu Building",
+    "floor": "0th Floor",
+    "category": "Other",
+    "name": "Dining Hall",
+    "roomNo": null,
+    "location": "Dining Hall of ladies hostel is on the ground floor of shatayu buliding"
+  },
+  {
+    "id": "SB-F0-R05",
+    "building": "Shadaygu Building",
+    "floor": "0th Floor",
+    "category": "Room",
+    "name": "Old Age Home Rooms (attached toilet/bath)",
+    "roomNo": "101 - 113",
+    "location": "Old Age Home Rooms is on the ground floor of shatayu buliding"
+  }
+]
