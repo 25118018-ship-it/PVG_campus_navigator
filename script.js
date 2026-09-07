@@ -310,4 +310,8 @@
     if (btn) handleQuery(btn.dataset.query);
   });
 
+  // Chat opens straight away when the page loads — no click needed first.
+  // The round button still works afterwards to close/reopen it.
+  openPanel();
+
 })();
