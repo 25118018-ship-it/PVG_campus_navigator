@@ -131,7 +131,7 @@
 
 /* ---------- Body + watermark background ----------
    The photo sits on a pseudo-element BEHIND the messages, at low
-   opacity, so text on top stays fully readable. Using pvg_entrance.jpg —
+   opacity, so text on top stays fully readable. Using pvg_entrance.png —
    swap the url() below if you rename or replace that file. */
 .cb-body{
   position: relative;
@@ -143,7 +143,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url('pvg_entrance.jpg');
+  background-image: url('pvg_entrance.png');
   background-size: cover;
   background-position: center;
   opacity: 0.08;           /* <- adjust watermark strength here, 0.05–0.15 looks best */
@@ -314,4 +314,3 @@
   padding: 6px 0 10px;
   margin: 0;
 }
-
