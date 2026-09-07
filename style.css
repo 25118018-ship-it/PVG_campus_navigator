@@ -1,205 +1,302 @@
-:root {
-  --paper: #F6F3EC;
-  --ink: #1E2A33;
-  --navy: #1E3A4C;
-  --brass: #B8863B;
-  --line: #D9D2C2;
-  --bot-bubble: #FFFFFF;
-  --user-bubble: #1E3A4C;
-  --radius: 10px;
+/* =========================================================
+   PVG COET Campus Guide — chatbot widget styles
+   Theme: academic "campus ledger" look — deep navy + brass
+   gold, a distinctive serif for headings, clean sans for body.
+========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
+
+:root{
+  --cb-navy:        #10233F;
+  --cb-navy-deep:   #0B1930;
+  --cb-gold:        #C6981F;
+  --cb-gold-soft:   #E7C165;
+  --cb-paper:       #FBF8F1;
+  --cb-ink:         #1E2430;
+  --cb-slate:       #67707E;
+  --cb-line:        #E4DCC8;
+  --cb-radius:      14px;
+  --cb-shadow:      0 18px 40px rgba(11,25,48,0.28);
+  --cb-font-head:   'Fraunces', Georgia, serif;
+  --cb-font-body:   'Inter', system-ui, sans-serif;
 }
 
-* {
+#campusBotLauncher, #campusBotPanel, #campusBotPanel *{
   box-sizing: border-box;
+  font-family: var(--cb-font-body);
 }
 
-body {
-  margin: 0;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: "Georgia", "Iowan Old Style", serif;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.site-header {
-  border-bottom: 2px solid var(--navy);
-  padding: 1.5rem 1.5rem 1.25rem;
-}
-
-.brand {
+/* ---------- Floating launcher ---------- */
+.cb-launcher{
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: var(--cb-navy);
+  color: var(--cb-gold-soft);
   display: flex;
   align-items: center;
-  gap: 0.9rem;
-  max-width: 640px;
-  margin: 0 auto;
+  justify-content: center;
+  box-shadow: var(--cb-shadow);
+  z-index: 9998;
+  transition: transform 0.2s ease;
+}
+.cb-launcher:hover{ transform: translateY(-2px); }
+.cb-launcher-icon{ width: 26px; height: 26px; }
+.cb-launcher-logo{
+  /* hidden by default: shown only if you want the college logo itself
+     as the launcher icon instead of the compass. Delete cb-launcher-icon
+     above and remove display:none below to switch to the logo. */
+  display: none;
+  width: 34px; height: 34px; border-radius: 50%; object-fit: cover;
 }
 
-.brand-mark {
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  font-weight: 700;
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
-  color: var(--paper);
-  background: var(--navy);
-  border-radius: 6px;
-  padding: 0.4rem 0.55rem;
-}
-
-.brand-text h1 {
-  margin: 0;
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--navy);
-}
-
-.brand-text p {
-  margin: 0.15rem 0 0;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  font-size: 0.85rem;
-  color: #5B6B74;
-}
-
-.chat-shell {
-  flex: 1;
-  width: 100%;
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 1.5rem;
+/* ---------- Panel shell ---------- */
+.cb-panel{
+  position: fixed;
+  right: 24px;
+  bottom: 96px;
+  width: 380px;
+  max-width: calc(100vw - 32px);
+  height: 600px;
+  max-height: calc(100vh - 140px);
+  background: var(--cb-paper);
+  border-radius: var(--cb-radius);
+  box-shadow: var(--cb-shadow);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(16px) scale(0.98);
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+.cb-panel.cb-open{
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
 }
 
-.chat-log {
-  flex: 1;
+/* ---------- Header (logo lives here, above the chat body) ---------- */
+.cb-header{
+  background: linear-gradient(180deg, var(--cb-navy) 0%, var(--cb-navy-deep) 100%);
+  padding: 16px 14px;
   display: flex;
-  flex-direction: column;
-  gap: 0.9rem;
-  padding-bottom: 1.5rem;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 3px solid var(--cb-gold);
+  flex-shrink: 0;
 }
-
-.message {
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  padding: 0.8rem 1rem;
-  border-radius: var(--radius);
-  max-width: 85%;
+.cb-logo{
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 8px;
+  padding: 4px;
+  flex-shrink: 0;
 }
-
-.message p {
-  margin: 0 0 0.5rem;
-}
-
-.message p:last-child {
-  margin-bottom: 0;
-}
-
-.message.bot {
-  background: var(--bot-bubble);
-  border: 1px solid var(--line);
-  align-self: flex-start;
-  border-top-left-radius: 2px;
-}
-
-.message.user {
-  background: var(--user-bubble);
-  color: var(--paper);
-  align-self: flex-end;
-  border-top-right-radius: 2px;
-}
-
-.examples {
+.cb-header-text{ flex: 1; min-width: 0; }
+.cb-header-text h1{
   margin: 0;
-  padding-left: 1.1rem;
-  color: #5B6B74;
+  font-family: var(--cb-font-head);
+  font-weight: 600;
+  font-size: 17px;
+  color: #fff;
+  letter-spacing: 0.2px;
 }
-
-.examples li {
-  margin-bottom: 0.2rem;
+.cb-header-text p{
+  margin: 2px 0 0;
+  font-size: 11.5px;
+  color: var(--cb-gold-soft);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-
-.result-card {
-  background: #FBF9F4;
-  border-left: 3px solid var(--brass);
-  padding: 0.6rem 0.8rem;
-  margin-top: 0.6rem;
-  border-radius: 4px;
-}
-
-.result-card .result-name {
-  font-weight: 700;
-  color: var(--navy);
-  display: block;
-  margin-bottom: 0.2rem;
-}
-
-.result-card .result-meta {
-  font-size: 0.8rem;
-  color: #8A7A5C;
-  display: block;
-  margin-bottom: 0.35rem;
-}
-
-.chat-input-row {
-  display: flex;
-  gap: 0.6rem;
-  border-top: 1px solid var(--line);
-  padding-top: 1rem;
-}
-
-#chat-input {
-  flex: 1;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  font-size: 0.95rem;
-  padding: 0.7rem 0.9rem;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: #FFFFFF;
-  color: var(--ink);
-}
-
-#chat-input:focus {
-  outline: 2px solid var(--navy);
-  outline-offset: 1px;
-}
-
-.chat-input-row button {
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  font-weight: 700;
-  font-size: 0.9rem;
-  background: var(--navy);
-  color: var(--paper);
+.cb-close{
+  background: transparent;
   border: none;
-  border-radius: var(--radius);
-  padding: 0 1.3rem;
+  color: #EDE7D6;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+.cb-close:hover{ background: rgba(255,255,255,0.08); }
+
+/* ---------- Body + watermark background ----------
+   The photo sits on a pseudo-element BEHIND the messages, at low
+   opacity, so text on top stays fully readable. Using pvg_entrance.jpg —
+   swap the url() below if you rename or replace that file. */
+.cb-body{
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  background: var(--cb-paper);
+}
+.cb-body::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('pvg_entrance.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.08;           /* <- adjust watermark strength here, 0.05–0.15 looks best */
+  filter: grayscale(20%);
+  z-index: 0;
+}
+.cb-messages{
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  overflow-y: auto;
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ---------- Message bubbles ---------- */
+.cb-msg{
+  max-width: 84%;
+  font-size: 13.5px;
+  line-height: 1.5;
+  padding: 10px 12px;
+  border-radius: 12px;
+  animation: cb-rise 0.18s ease;
+}
+@keyframes cb-rise{
+  from{ opacity: 0; transform: translateY(6px); }
+  to{ opacity: 1; transform: translateY(0); }
+}
+.cb-msg.bot{
+  align-self: flex-start;
+  background: #fff;
+  color: var(--cb-ink);
+  border-left: 3px solid var(--cb-gold);
+  box-shadow: 0 2px 8px rgba(16,35,63,0.06);
+}
+.cb-msg.bot .cb-loc-name{
+  display: block;
+  font-family: var(--cb-font-head);
+  font-weight: 600;
+  font-size: 14.5px;
+  color: var(--cb-navy);
+  margin-bottom: 3px;
+}
+.cb-msg.user{
+  align-self: flex-end;
+  background: var(--cb-navy);
+  color: #F6F1E3;
+}
+.cb-msg .cb-chip-row{
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.cb-msg .cb-chip-row button{
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--cb-line);
+  background: var(--cb-paper);
+  color: var(--cb-navy);
   cursor: pointer;
 }
+.cb-msg .cb-chip-row button:hover{ border-color: var(--cb-gold); }
 
-.chat-input-row button:hover {
-  background: #14262F;
+/* typing indicator */
+.cb-typing{
+  align-self: flex-start;
+  display: flex;
+  gap: 4px;
+  padding: 10px 14px;
+  background: #fff;
+  border-left: 3px solid var(--cb-gold);
+  border-radius: 12px;
+}
+.cb-typing span{
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--cb-slate);
+  animation: cb-bounce 1s infinite ease-in-out;
+}
+.cb-typing span:nth-child(2){ animation-delay: 0.15s; }
+.cb-typing span:nth-child(3){ animation-delay: 0.3s; }
+@keyframes cb-bounce{
+  0%, 60%, 100%{ transform: translateY(0); opacity: 0.5; }
+  30%{ transform: translateY(-4px); opacity: 1; }
 }
 
-.site-footer {
-  text-align: center;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  font-size: 0.75rem;
-  color: #8A9399;
-  padding: 1rem;
+/* ---------- Quick suggestion chips ---------- */
+.cb-suggestions{
+  flex-shrink: 0;
+  display: flex;
+  gap: 6px;
+  padding: 8px 12px;
+  overflow-x: auto;
+  border-top: 1px solid var(--cb-line);
+  background: var(--cb-paper);
 }
-
-.site-footer p {
-  margin: 0.15rem 0;
+.cb-chip{
+  flex-shrink: 0;
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--cb-line);
+  background: #fff;
+  color: var(--cb-navy);
+  cursor: pointer;
+  white-space: nowrap;
 }
+.cb-chip:hover{ border-color: var(--cb-gold); background: #FFFBF0; }
 
-.site-footer .credit {
-  color: var(--brass);
-  font-weight: 700;
+/* ---------- Input row ---------- */
+.cb-input-row{
+  flex-shrink: 0;
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid var(--cb-line);
+  background: #fff;
 }
+#campusBotInput{
+  flex: 1;
+  border: 1px solid var(--cb-line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 13.5px;
+  outline: none;
+  background: var(--cb-paper);
+  color: var(--cb-ink);
+}
+#campusBotInput:focus{ border-color: var(--cb-gold); }
+.cb-send{
+  width: 40px;
+  border: none;
+  border-radius: 10px;
+  background: var(--cb-navy);
+  color: var(--cb-gold-soft);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.cb-send:hover{ background: var(--cb-navy-deep); }
 
-@media (max-width: 480px) {
-  .message {
-    max-width: 92%;
+/* ---------- Small screens ---------- */
+@media (max-width: 420px){
+  .cb-panel{
+    right: 8px;
+    left: 8px;
+    width: auto;
+    bottom: 88px;
   }
+  .cb-launcher{ right: 16px; bottom: 16px; }
 }
