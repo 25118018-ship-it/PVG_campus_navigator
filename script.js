@@ -84,11 +84,83 @@
       building: "Every floor, near the staircase",
       directions: "On every floor, the washrooms are right beside the staircase landing.",
       keywords: ["washroom", "restroom", "toilet", "bathroom", "loo"]
+    },
+    {
+      id: "main-gate",
+      name: "Main Gate",
+      building: "Near the FE Building",
+      directions: "There's only one gate for the whole campus — the entry and exit gate are the same, located right next to the FE (First Year Engineering) building.",
+      keywords: [
+        "gate", "main gate", "entry gate", "exit gate", "entrance",
+        "college gate", "front gate", "campus gate", "entry and exit",
+        "way in", "way out"
+      ]
     }
   ];
 
   /* ---------------------------------------------------------
-     2) TEXT MATCHING ENGINE
+     2) GREETINGS
+     Checked first — if the whole message is just a greeting,
+     reply warmly instead of trying to match it to a place.
+  --------------------------------------------------------- */
+  const GREETINGS = new Set([
+    "hi", "hii", "hiii", "hey", "heyy", "hello", "helo", "hallo",
+    "namaste", "namaskar", "good morning", "good afternoon",
+    "good evening", "gm", "yo", "sup"
+  ]);
+
+  function isGreeting(query) {
+    const cleaned = normalize(query);
+    return GREETINGS.has(cleaned) || [...GREETINGS].some(g => cleaned === g);
+  }
+
+  /* ---------------------------------------------------------
+     3) ABOUT THE COLLEGE
+     General questions that aren't about finding a place.
+     Add more entries the same way if students ask other things
+     (fees, courses, principal's name, etc.).
+  --------------------------------------------------------- */
+  const ABOUT_COLLEGE = [
+    {
+      keywords: ["what is pvg", "about pvg", "about college", "about this college", "what is this college", "college information", "college info", "full form", "what does pvg stand for"],
+      answer: "PVG's College of Engineering and Technology (PVGCOET) is a private engineering college in Pune, run by Pune Vidyarthi Griha. It's affiliated with Savitribai Phule Pune University and holds a NAAC 'A' accreditation."
+    },
+    {
+      keywords: ["established", "establish", "founded", "founding", "when was it established", "history", "how old", "since when"],
+      answer: "PVGCOET was established in 1985."
+    },
+    {
+      keywords: ["where is this college", "college location", "located", "address", "where is pvg", "which area", "where in pune"],
+      answer: "The college is located in Vidya Nagari, Shivdarshan, Parvati, Pune – 411009, Maharashtra."
+    }
+  ];
+
+  function findAboutMatch(query) {
+    const queryTokens = tokenize(query);
+    const normalizedQuery = normalize(query);
+    let best = null;
+    let bestScore = 0;
+
+    for (const item of ABOUT_COLLEGE) {
+      let score = 0;
+      for (const alias of item.keywords) {
+        const normAlias = normalize(alias);
+        if (normalizedQuery.includes(normAlias)) { score += 4; continue; }
+        const aliasTokens = normAlias.split(" ").filter(Boolean);
+        for (const qWord of queryTokens) {
+          for (const aWord of aliasTokens) {
+            if (qWord === aWord) score += 2;
+            else if (fuzzyWordMatch(qWord, aWord)) score += 1;
+          }
+        }
+      }
+      if (score > bestScore) { bestScore = score; best = item; }
+    }
+    return bestScore >= 3 ? best : null;
+  }
+
+  /* ---------------------------------------------------------
+     4) TEXT MATCHING ENGINE (for locations)
   --------------------------------------------------------- */
 
   // Words that carry no location meaning — stripped before matching.
@@ -169,6 +241,17 @@
   const CONFIDENT_THRESHOLD = 3; // score needed to answer directly rather than ask/clarify
 
   function buildReply(query) {
+    if (isGreeting(query)) {
+      return {
+        text: "Hey there! 👋 I'm the campus guide for PVGCOET. Ask me where any office, lab, or facility is — or ask me about the college itself."
+      };
+    }
+
+    const aboutMatch = findAboutMatch(query);
+    if (aboutMatch) {
+      return { text: aboutMatch.answer };
+    }
+
     const matches = findMatches(query);
 
     if (matches.length === 0) {
@@ -198,7 +281,7 @@
   }
 
   /* ---------------------------------------------------------
-     3) UI WIRING
+     5) UI WIRING
   --------------------------------------------------------- */
   const launcher = document.getElementById("campusBotLauncher");
   const panel = document.getElementById("campusBotPanel");
