@@ -48,9 +48,6 @@
 .cb-launcher:hover{ transform: translateY(-2px); }
 .cb-launcher-icon{ width: 26px; height: 26px; }
 .cb-launcher-logo{
-  /* hidden by default: shown only if you want the college logo itself
-     as the launcher icon instead of the compass. Delete cb-launcher-icon
-     above and remove display:none below to switch to the logo. */
   display: none;
   width: 34px; height: 34px; border-radius: 50%; object-fit: cover;
 }
@@ -82,7 +79,7 @@
   pointer-events: auto;
 }
 
-/* ---------- Header (logo lives here, above the chat body) ---------- */
+/* ---------- Header ---------- */
 .cb-header{
   background: linear-gradient(180deg, var(--cb-navy) 0%, var(--cb-navy-deep) 100%);
   padding: 16px 14px;
@@ -129,10 +126,7 @@
 }
 .cb-close:hover{ background: rgba(255,255,255,0.08); }
 
-/* ---------- Body + watermark background ----------
-   The photo sits on a pseudo-element BEHIND the messages, at low
-   opacity, so text on top stays fully readable. Using pvg_entrance.png —
-   swap the url() below if you rename or replace that file. */
+/* ---------- Body + watermark background ---------- */
 .cb-body{
   position: relative;
   flex: 1;
@@ -146,7 +140,7 @@
   background-image: url('pvg_entrance.png');
   background-size: cover;
   background-position: center;
-  opacity: 0.08;           /* <- adjust watermark strength here, 0.05–0.15 looks best */
+  opacity: 0.08;
   filter: grayscale(20%);
   z-index: 0;
 }
@@ -298,11 +292,6 @@
   flex-shrink: 0;
 }
 .cb-send:hover{ background: var(--cb-navy-deep); }
-
-/* ---------- Small screens ---------- */
-@media (max-width: 420px){
-  .cb-launcher{ right: 16px; bottom: 16px; }
-}
 
 /* ---------- Credit line ---------- */
 .cb-credit{
