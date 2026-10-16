@@ -1,47 +1,85 @@
-/* =========================================================
-   PVG COET Campus Guide — chatbot logic
-   The important part is the matching engine near the bottom:
-   instead of requiring an exact phrase, it strips filler words
-   and matches on the meaningful words that are left, with typo
-   tolerance. So "where is the hod office", "hod cabin", and
-   "can you tell me where the hods cabin is" all resolve to the
-   same place.
-========================================================= */
-
 (function () {
 
   /* ---------------------------------------------------------
-     1) YOUR CAMPUS DATA
-     Replace/extend this array with the real data you already
-     collected. Each entry needs:
-       - name: what's shown to the visitor
-       - building / floor: shown in the reply
-       - directions: short walking directions
-       - keywords: every word or phrase a person might use for
-         this place. Add as many natural variations as you can
-         think of — that's what makes matching feel smart.
+     1) CAMPUS DATA (Merged with your full dataset)
   --------------------------------------------------------- */
   const LOCATIONS = [
     {
-      id: "hod-office",
-      name: "HOD Office (AI & Data Science)",
-      building: "Main Building, 2nd Floor",
-      directions: "Take the main staircase to the 2nd floor, turn left — it's the third door on the right, opposite the staff room.",
-      keywords: [
-        "hod", "hod office", "hod cabin", "hod room", "hods cabin",
-        "head of department", "department head", "hod sir", "hod maam",
-        "ai and ds hod", "ai ds hod"
-      ]
+      id: "FBL-F1-R01",
+      name: "Water Point (FE Building Ground Floor)",
+      building: "FE Building (Late Govind Kashinath Patil), Ground Floor",
+      directions: "This water cooler is placed on the right side of the lift on the ground floor of the FE building.",
+      keywords: ["water point", "water cooler", "drinking water", "water"]
     },
     {
-      id: "principal-office",
-      name: "Principal's Office",
-      building: "Main Building, Ground Floor",
-      directions: "Enter the main gate, it's straight ahead past the reception desk.",
-      keywords: [
-        "principal", "principal office", "principal cabin", "principal room",
-        "director office", "head of college"
-      ]
+      id: "FBL-F1-R02",
+      name: "Lift (FE Building Ground Floor)",
+      building: "FE Building (Late Govind Kashinath Patil), Ground Floor",
+      directions: "This lift is just to the left of the boys' washroom on ground floor of FE building.",
+      keywords: ["lift", "elevator", "fe lift"]
+    },
+    {
+      id: "FBL-F1-R03-05",
+      name: "FE Staff Room & HOD Office",
+      building: "FE Building (Late Govind Kashinath Patil), Ground Floor",
+      directions: "The 1st FE staff room is left of the HOD's cabin. The FE HOD's office is right of the 1st staff room. The 2nd staff room is right of the HOD's cabin.",
+      keywords: ["hod office", "fe hod", "fe staff room", "staff room", "hod cabin"]
+    },
+    {
+      id: "FBL-F1-R06",
+      name: "Ladies Toilet (FE Ground Floor)",
+      building: "FE Building (Late Govind Kashinath Patil), Ground Floor",
+      directions: "The ladies' toilet on the ground floor of the FE building is just to the left of the 3rd staff room.",
+      keywords: ["ladies toilet", "girls washroom", "ladies washroom", "womens restroom"]
+    },
+    {
+      id: "FBL-F1-R08",
+      name: "Gents Toilet (FE Ground Floor)",
+      building: "FE Building (Late Govind Kashinath Patil), Ground Floor",
+      directions: "The gents' toilet is opposite the 1st staff room and to the left of the lift on the ground floor.",
+      keywords: ["gents toilet", "boys washroom", "mens restroom", "gents washroom"]
+    },
+    {
+      id: "FBL-F2-R02",
+      name: "Classrooms 201, 202, 203",
+      building: "FE Building (Late Govind Kashinath Patil), 2nd Floor",
+      directions: "Classrooms 201, 202 & 203 are opposite the gents toilet on the 2nd floor.",
+      keywords: ["classroom 201", "classroom 202", "classroom 203", "class 201", "room 201"]
+    },
+    {
+      id: "FBL-F2-R04",
+      name: "Mechanical Lab",
+      building: "FE Building (Late Govind Kashinath Patil), 2nd Floor",
+      directions: "Mechanical lab is on the right side of the ladies washroom on the 2nd floor.",
+      keywords: ["mechanical lab", "mech lab"]
+    },
+    {
+      id: "FBL-F3-R01",
+      name: "Computer Lab (301A/301B)",
+      building: "FE Building (Late Govind Kashinath Patil), 3rd Floor",
+      directions: "Located in Room 301A/301B on the 3rd floor.",
+      keywords: ["computer lab", "cs lab", "lab 301", "software lab", "programming lab"]
+    },
+    {
+      id: "FBL-F3-R03",
+      name: "Classroom 302",
+      building: "FE Building (Late Govind Kashinath Patil), 3rd Floor",
+      directions: "Classroom 302 is on the right side of the computer lab.",
+      keywords: ["room 302", "classroom 302"]
+    },
+    {
+      id: "FBL-F4-R02",
+      name: "Classrooms 401, 402, 403",
+      building: "FE Building (Late Govind Kashinath Patil), 4th Floor",
+      directions: "Rooms 401 and 402 are opposite the gents toilet on the 4th floor.",
+      keywords: ["room 401", "room 402", "room 403", "class 401"]
+    },
+    {
+      id: "FBL-F5-R01",
+      name: "Classrooms 501, 502",
+      building: "FE Building (Late Govind Kashinath Patil), 5th Floor",
+      directions: "Room numbers 501 and 502 are opposite the gents toilet on the 5th floor.",
+      keywords: ["room 501", "room 502", "class 501"]
     },
     {
       id: "library",
@@ -62,63 +100,44 @@
       name: "Examination Cell",
       building: "Admin Block, 1st Floor",
       directions: "Take the admin block stairs to the 1st floor; it's next to the accounts office.",
-      keywords: ["exam cell", "examination", "exam office", "exam department", "hall ticket", "exam section"]
+      keywords: ["exam cell", "examination", "exam office", "exam department", "hall ticket"]
     },
     {
       id: "placement-cell",
       name: "Training & Placement Cell",
       building: "Admin Block, 2nd Floor",
       directions: "2nd floor of the admin block, at the end of the corridor.",
-      keywords: ["placement cell", "placement office", "tpo", "training and placement", "placement", "internship office"]
-    },
-    {
-      id: "computer-lab",
-      name: "AI & DS Computer Lab",
-      building: "Block C, 3rd Floor",
-      directions: "Take the Block C lift to the 3rd floor; it's Lab 301.",
-      keywords: ["computer lab", "cs lab", "ai ds lab", "lab 301", "programming lab", "system lab"]
-    },
-    {
-      id: "washroom",
-      name: "Nearest Washroom",
-      building: "Every floor, near the staircase",
-      directions: "On every floor, the washrooms are right beside the staircase landing.",
-      keywords: ["washroom", "restroom", "toilet", "bathroom", "loo"]
-    },
-    {
-      id: "main-gate",
-      name: "Main Gate",
-      building: "Near the FE Building",
-      directions: "There's only one gate for the whole campus — the entry and exit gate are the same, located right next to the FE (First Year Engineering) building.",
-      keywords: [
-        "gate", "main gate", "entry gate", "exit gate", "entrance",
-        "college gate", "front gate", "campus gate", "entry and exit",
-        "way in", "way out"
-      ]
+      keywords: ["placement cell", "placement office", "tpo", "training and placement", "placement"]
     }
   ];
 
   /* ---------------------------------------------------------
-     2) GREETINGS
-     Checked first — if the whole message is just a greeting,
-     reply warmly instead of trying to match it to a place.
+     2) GREETINGS & CASUAL CHAT
   --------------------------------------------------------- */
   const GREETINGS = new Set([
     "hi", "hii", "hiii", "hey", "heyy", "hello", "helo", "hallo",
     "namaste", "namaskar", "good morning", "good afternoon",
-    "good evening", "gm", "yo", "sup"
+    "good evening", "gm", "yo", "sup", "bye", "goodbye", "thanks", "thank you"
   ]);
 
   function isGreeting(query) {
     const cleaned = normalize(query);
-    return GREETINGS.has(cleaned) || [...GREETINGS].some(g => cleaned === g);
+    return GREETINGS.has(cleaned) || [...GREETINGS].some(g => cleaned.includes(g));
+  }
+
+  function getGreetingReply(query) {
+    const q = normalize(query);
+    if (q.includes("bye") || q.includes("goodbye")) {
+      return "👋 Goodbye! Have a great day at PVG campus!";
+    }
+    if (q.includes("thank")) {
+      return "You're very welcome! Let me know if you need any other location assistance.";
+    }
+    return "👋 Hello! Welcome to PVG's COET Campus Assistant. Ask me where any office, lab, or facility is — or ask me about the college itself.";
   }
 
   /* ---------------------------------------------------------
      3) ABOUT THE COLLEGE
-     General questions that aren't about finding a place.
-     Add more entries the same way if students ask other things
-     (fees, courses, principal's name, etc.).
   --------------------------------------------------------- */
   const ABOUT_COLLEGE = [
     {
@@ -160,16 +179,14 @@
   }
 
   /* ---------------------------------------------------------
-     4) TEXT MATCHING ENGINE (for locations)
+     4) TEXT MATCHING ENGINE
   --------------------------------------------------------- */
-
-  // Words that carry no location meaning — stripped before matching.
   const STOPWORDS = new Set([
     "where","is","are","was","the","a","an","i","want","to","find","please",
     "can","you","tell","me","show","us","in","of","for","my","how","do",
     "does","get","reach","need","needed","looking","location","locate",
     "this","that","these","those","it","go","going","there","near","nearby",
-    "and","or","at","on","with","us","hey","hi","hello"
+    "and","or","at","on","with","hey","hi","hello"
   ]);
 
   function normalize(str) {
@@ -182,7 +199,6 @@
       .filter(w => w.length > 0 && !STOPWORDS.has(w));
   }
 
-  // Standard edit-distance, used to tolerate typos / plurals ("hods" vs "hod").
   function levenshtein(a, b) {
     const m = a.length, n = b.length;
     const dp = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
@@ -205,13 +221,10 @@
     return levenshtein(a, b) <= tolerance;
   }
 
-  // Score how well one location matches the query.
   function scoreLocation(loc, queryTokens, normalizedQuery) {
     let score = 0;
-
     for (const alias of loc.keywords) {
       const normAlias = normalize(alias);
-      // Strong signal: the whole alias phrase appears in the query as typed.
       if (normalizedQuery.includes(normAlias)) {
         score += 4;
         continue;
@@ -238,13 +251,11 @@
       .sort((a, b) => b.score - a.score);
   }
 
-  const CONFIDENT_THRESHOLD = 3; // score needed to answer directly rather than ask/clarify
+  const CONFIDENT_THRESHOLD = 3;
 
   function buildReply(query) {
     if (isGreeting(query)) {
-      return {
-        text: "Hey there! 👋 I'm the campus guide for PVGCOET. Ask me where any office, lab, or facility is — or ask me about the college itself."
-      };
+      return { text: getGreetingReply(query) };
     }
 
     const aboutMatch = findAboutMatch(query);
@@ -256,7 +267,7 @@
 
     if (matches.length === 0) {
       return {
-        text: "I couldn't match that to a place on campus yet. Try naming the place directly — e.g. \"library\", \"HOD office\", \"exam cell\" — or tap one of the suggestions below.",
+        text: "I couldn't match that to a place on campus yet. Try naming the place directly — e.g. \"library\", \"FE HOD office\", \"computer lab\" — or tap one of the suggestions below.",
         chips: LOCATIONS.slice(0, 4).map(l => l.name)
       };
     }
@@ -264,7 +275,6 @@
     const top = matches[0];
     const runnerUp = matches[1];
 
-    // Confident single match.
     if (top.score >= CONFIDENT_THRESHOLD && (!runnerUp || top.score - runnerUp.score >= 2)) {
       return {
         locName: top.loc.name,
@@ -272,7 +282,6 @@
       };
     }
 
-    // Close call between a couple of places — ask instead of guessing wrong.
     const options = matches.slice(0, 3).map(m => m.loc.name);
     return {
       text: `Did you mean one of these?`,
@@ -298,7 +307,7 @@
     panel.setAttribute("aria-hidden", "false");
     launcher.setAttribute("aria-expanded", "true");
     if (!greeted) {
-      addBotMessage({ text: "Hi! I'm the campus guide. Ask me where any office, lab, or facility is." });
+      addBotMessage({ text: "Hi! I'm your PVG campus assistant. Ask me where any lab, office, or facility is." });
       greeted = true;
     }
     input.focus();
@@ -380,7 +389,7 @@
     setTimeout(() => {
       hideTyping();
       addBotMessage(buildReply(text));
-    }, 420); // small delay just makes the reply feel considered, not instant/robotic
+    }, 420);
   }
 
   form.addEventListener("submit", e => {
@@ -393,8 +402,6 @@
     if (btn) handleQuery(btn.dataset.query);
   });
 
-  // Chat opens straight away when the page loads — no click needed first.
-  // The round button still works afterwards to close/reopen it.
   openPanel();
 
 })();
