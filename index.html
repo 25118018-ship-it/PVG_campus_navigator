@@ -8,15 +8,7 @@
 </head>
 <body>
 
-<!-- =========================================================
-     This page only contains the chatbot widget so you can test
-     it on its own. On your real site, paste the <button> and
-     <section id="campusBotPanel"> blocks into your existing
-     page (just before </body>), and keep the two file links
-     below (chatbot.css, chatbot.js) in your <head>/<body>.
-========================================================== -->
-
-<!-- Floating launcher button (the round icon that opens the chat) -->
+<!-- Floating launcher button -->
 <button id="campusBotLauncher" class="cb-launcher" aria-label="Open campus assistant" aria-expanded="false">
   <img src="pvg_logo.png" alt="" class="cb-launcher-logo">
   <svg viewBox="0 0 24 24" class="cb-launcher-icon" aria-hidden="true">
@@ -42,21 +34,20 @@
   </header>
 
   <div class="cb-body">
-    <!-- pvg_entrance.png is applied as a faint watermark behind this area via CSS -->
     <div class="cb-messages" id="campusBotMessages" role="log" aria-live="polite"></div>
   </div>
 
   <div class="cb-suggestions" id="campusBotSuggestions">
-    <button class="cb-chip" data-query="Where is the HOD office?">HOD office</button>
-    <button class="cb-chip" data-query="Where is the library?">Library</button>
-    <button class="cb-chip" data-query="Where is the canteen?">Canteen</button>
-    <button class="cb-chip" data-query="Placement cell location">Placement cell</button>
-    <button class="cb-chip" data-query="Where is the main gate?">Main gate</button>
-    <button class="cb-chip" data-query="When was this college established?">About PVGCOET</button>
+    <button class="cb-chip" data-query="Good morning">👋 Hi / Morning</button>
+    <button class="cb-chip" data-query="FE HOD office">HOD Office</button>
+    <button class="cb-chip" data-query="Computer lab">Computer Lab</button>
+    <button class="cb-chip" data-query="Library">Library</button>
+    <button class="cb-chip" data-query="Canteen">Canteen</button>
+    <button class="cb-chip" data-query="Mechanical lab">Mechanical Lab</button>
   </div>
 
   <form id="campusBotForm" class="cb-input-row">
-    <input id="campusBotInput" type="text" placeholder="Ask e.g. where's the exam cell..." autocomplete="off">
+    <input id="campusBotInput" type="text" placeholder="Ask e.g. where's the computer lab..." autocomplete="off">
     <button type="submit" class="cb-send" aria-label="Send message">
       <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
         <path d="M3 11l18-8-8 18-2.5-7.5L3 11Z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
