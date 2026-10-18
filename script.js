@@ -402,6 +402,9 @@
     if (btn) handleQuery(btn.dataset.query);
   });
 
+})();
+
+
   openPanel();
 
 })();
