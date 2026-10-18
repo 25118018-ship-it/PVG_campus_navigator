@@ -3,9 +3,9 @@
    Theme: academic "campus ledger" look — deep navy + brass
    gold, a distinctive serif for headings, clean sans for body.
 ========================================================= */
-
+ 
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
-
+ 
 :root{
   --cb-navy:        #10233F;
   --cb-navy-deep:   #0B1930;
@@ -20,12 +20,12 @@
   --cb-font-head:   'Fraunces', Georgia, serif;
   --cb-font-body:   'Inter', system-ui, sans-serif;
 }
-
+ 
 #campusBotLauncher, #campusBotPanel, #campusBotPanel *{
   box-sizing: border-box;
   font-family: var(--cb-font-body);
 }
-
+ 
 /* ---------- Floating launcher ---------- */
 .cb-launcher{
   position: fixed;
@@ -51,7 +51,7 @@
   display: none;
   width: 34px; height: 34px; border-radius: 50%; object-fit: cover;
 }
-
+ 
 /* ---------- Panel shell ---------- */
 .cb-panel{
   position: fixed;
@@ -78,7 +78,7 @@
   transform: scale(1);
   pointer-events: auto;
 }
-
+ 
 /* ---------- Header ---------- */
 .cb-header{
   background: linear-gradient(180deg, var(--cb-navy) 0%, var(--cb-navy-deep) 100%);
@@ -125,7 +125,7 @@
   flex-shrink: 0;
 }
 .cb-close:hover{ background: rgba(255,255,255,0.08); }
-
+ 
 /* ---------- Body + watermark background ---------- */
 .cb-body{
   position: relative;
@@ -157,7 +157,7 @@
   width: 100%;
   margin: 0 auto;
 }
-
+ 
 /* ---------- Message bubbles ---------- */
 .cb-msg{
   max-width: 84%;
@@ -207,7 +207,7 @@
   cursor: pointer;
 }
 .cb-msg .cb-chip-row button:hover{ border-color: var(--cb-gold); }
-
+ 
 /* typing indicator */
 .cb-typing{
   align-self: flex-start;
@@ -229,7 +229,7 @@
   0%, 60%, 100%{ transform: translateY(0); opacity: 0.5; }
   30%{ transform: translateY(-4px); opacity: 1; }
 }
-
+ 
 /* ---------- Quick suggestion chips ---------- */
 .cb-suggestions{
   flex-shrink: 0;
@@ -255,7 +255,7 @@
   white-space: nowrap;
 }
 .cb-chip:hover{ border-color: var(--cb-gold); background: #FFFBF0; }
-
+ 
 /* ---------- Input row ---------- */
 .cb-input-row{
   flex-shrink: 0;
@@ -292,7 +292,7 @@
   flex-shrink: 0;
 }
 .cb-send:hover{ background: var(--cb-navy-deep); }
-
+ 
 /* ---------- Credit line ---------- */
 .cb-credit{
   flex-shrink: 0;
@@ -303,3 +303,73 @@
   padding: 6px 0 10px;
   margin: 0;
 }
+/* Live map navigation — uses the colours from style.css */
+ 
+.cb-map-chip{
+  flex-shrink: 0;
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--cb-gold);
+  background: var(--cb-navy);
+  color: var(--cb-gold-soft);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.cb-map-chip:hover{ background: var(--cb-navy-deep); }
+ 
+.cb-nav-btn{
+  display: block;
+  margin-top: 10px;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  background: var(--cb-navy);
+  color: var(--cb-gold-soft);
+  cursor: pointer;
+}
+.cb-nav-btn:hover{ background: var(--cb-navy-deep); }
+ 
+/* Map screen */
+.cm-panel{
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: none;
+  flex-direction: column;
+  background: var(--cb-paper);
+  font-family: var(--cb-font-body);
+}
+.cm-panel.cm-open{ display: flex; }
+.cm-panel *{ box-sizing: border-box; }
+ 
+#campusMap{ flex: 1; min-height: 0; }
+ 
+.cm-controls{
+  flex-shrink: 0;
+  display: grid;
+  gap: 8px;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 12px 16px 14px;
+  background: #fff;
+  border-top: 1px solid var(--cb-line);
+}
+.cm-controls label{ display: grid; gap: 3px; font-size: 13px; font-weight: 600; color: var(--cb-navy); }
+.cm-controls select{
+  font: inherit; font-weight: 400; padding: 9px;
+  border: 1px solid var(--cb-line); border-radius: 8px;
+  background: var(--cb-paper); color: var(--cb-ink);
+}
+.cm-row{ display: flex; gap: 8px; }
+.cm-controls button{
+  font: inherit; font-weight: 600; padding: 11px 14px;
+  border: none; border-radius: 8px; cursor: pointer;
+}
+#cmGo{ flex: 1; background: var(--cb-navy); color: var(--cb-gold-soft); }
+#cmStop{ background: #EDE7D6; color: var(--cb-navy); }
+.cm-controls button:disabled{ opacity: .5; cursor: default; }
+#cmStatus{ margin: 0; font-size: 14px; color: var(--cb-ink); min-height: 1.3em; }
