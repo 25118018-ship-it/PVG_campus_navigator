@@ -402,6 +402,8 @@
     if (btn) handleQuery(btn.dataset.query);
   });
  
+  openPanel();
+ 
 })();
  
 (function () {
@@ -580,7 +582,3 @@
  
 })();
  
-
-  openPanel();
-
-})();
