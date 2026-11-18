@@ -3,659 +3,735 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PVG COET — Campus Guide</title>
-
+<title>PVG COET Campus Guide</title>
 <style>
-  :root {
-    --paper: #F6F3EC;
-    --paper-card: #FFFFFF;
-    --paper-tint: #FBF9F4;
-    --ink: #1E2A33;
-    --ink-muted: #5B6B74;
-    --navy: #1E3A4C;
-    --navy-dark: #14262F;
-    --brass: #B8863B;
-    --brass-soft: #EFE5D1;
-    --line: #D9D2C2;
-    --warn-bg: #FFF8E7;
-    --warn-ink: #8A5A00;
+  /* =========================================================
+     PVG COET Campus Guide — chatbot widget styles
+     Theme: academic "campus ledger" look — deep navy + brass
+     gold, a distinctive serif for headings, clean sans for body.
+  ========================================================= */
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
+ 
+  :root{
+    --cb-navy:        #10233F;
+    --cb-navy-deep:   #0B1930;
+    --cb-gold:        #C6981F;
+    --cb-gold-soft:   #E7C165;
+    --cb-paper:       #FBF8F1;
+    --cb-ink:         #1E2430;
+    --cb-slate:       #67707E;
+    --cb-line:        #E4DCC8;
+    --cb-radius:      14px;
+    --cb-shadow:      0 18px 40px rgba(11,25,48,0.28);
+    --cb-font-head:   'Fraunces', Georgia, serif;
+    --cb-font-body:   'Inter', system-ui, sans-serif;
   }
-
-  * { box-sizing: border-box; }
-
-  body {
-    margin: 0;
-    background: var(--paper);
-    color: var(--ink);
-    font-family: Georgia, "Iowan Old Style", serif;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+ 
+  #campusBotLauncher, #campusBotPanel, #campusBotPanel *{
+    box-sizing: border-box;
+    font-family: var(--cb-font-body);
   }
-
-  /* ============================================
-     HEADER & BRANDING
-     ============================================ */
-  .site-header {
-    background: var(--paper);
-    border-bottom: 2px solid var(--navy);
-    padding: 1rem 1.25rem;
-    flex-shrink: 0;
-  }
-
-  .header-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    max-width: 720px;
-    margin: 0 auto;
-  }
-
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-  }
-
-  .brand-mark {
-    font-family: system-ui, -apple-system, Arial, sans-serif;
-    font-weight: 800;
-    font-size: 0.78rem;
-    letter-spacing: 0.06em;
-    color: var(--paper);
-    background: var(--navy);
-    border: 1.5px solid var(--brass);
-    border-radius: 7px;
-    padding: 0.45rem 0.6rem;
-  }
-
-  .brand-text h1 {
-    margin: 0;
-    font-size: 1.35rem;
-    color: var(--navy);
-    line-height: 1.15;
-  }
-
-  .brand-text p {
-    margin: 0.15rem 0 0;
-    font-family: system-ui, -apple-system, Arial, sans-serif;
-    font-size: 0.82rem;
-    color: var(--ink-muted);
-  }
-
-  .clear-btn {
-    font-family: system-ui, -apple-system, Arial, sans-serif;
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--navy);
-    background: transparent;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 0.4rem 0.75rem;
+ 
+  /* ---------- Floating launcher ---------- */
+  .cb-launcher{
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
     cursor: pointer;
-    transition: all 0.15s ease;
+    background: var(--cb-navy);
+    color: var(--cb-gold-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--cb-shadow);
+    z-index: 9998;
+    transition: transform 0.2s ease;
   }
-
-  .clear-btn:hover {
-    background: var(--brass-soft);
-    border-color: var(--brass);
+  .cb-launcher:hover{ transform: translateY(-2px); }
+  .cb-launcher-icon{ width: 26px; height: 26px; }
+  .cb-launcher-logo{
+    display: none;
+    width: 34px; height: 34px; border-radius: 50%; object-fit: cover;
   }
-
-  /* ============================================
-     CHAT AREA & MESSAGES
-     ============================================ */
-  .chat-shell {
-    flex: 1;
-    width: 100%;
-    max-width: 720px;
+ 
+  /* ---------- Panel shell ---------- */
+  .cb-panel{
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
     margin: 0 auto;
-    padding: 1rem 1.25rem 0.75rem;
+    background: var(--cb-paper);
+    border-radius: 0;
+    box-shadow: none;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    z-index: 9999;
+    opacity: 0;
+    transform: scale(0.98);
+    pointer-events: none;
+    transition: opacity 0.22s ease, transform 0.22s ease;
   }
-
-  .chat-log {
-    flex: 1;
-    overflow-y: auto;
+  .cb-panel.cb-open{
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+  }
+ 
+  /* ---------- Header ---------- */
+  .cb-header{
+    background: linear-gradient(180deg, var(--cb-navy) 0%, var(--cb-navy-deep) 100%);
+    padding: 16px 14px;
     display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-    padding-right: 4px;
-    padding-bottom: 1rem;
-    scroll-behavior: smooth;
-  }
-
-  .message {
-    font-family: system-ui, -apple-system, Arial, sans-serif;
-    font-size: 0.94rem;
-    line-height: 1.5;
-    padding: 0.85rem 1.05rem;
-    border-radius: 12px;
-    max-width: 88%;
-    animation: fadeIn 0.18s ease-out;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(4px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .message p { margin: 0 0 0.5rem; }
-  .message p:last-child { margin-bottom: 0; }
-
-  .message.bot {
-    background: var(--paper-card);
-    border: 1px solid var(--line);
-    align-self: flex-start;
-    border-top-left-radius: 3px;
-    box-shadow: 0 1px 3px rgba(30, 42, 51, 0.04);
-  }
-
-  .message.user {
-    background: var(--navy);
-    color: var(--paper);
-    align-self: flex-end;
-    border-top-right-radius: 3px;
-  }
-
-  .examples {
-    margin: 0.35rem 0 0;
-    padding-left: 1.15rem;
-    color: var(--ink-muted);
-    font-size: 0.88rem;
-  }
-  .examples li {
-    margin-bottom: 0.2rem;
-    cursor: pointer;
-  }
-  .examples li:hover {
-    color: var(--navy);
-    text-decoration: underline;
-  }
-
-  /* ============================================
-     RESULT CARDS
-     ============================================ */
-  .result-card {
-    background: var(--paper-tint);
-    border: 1px solid #E5DEC9;
-    border-left: 4px solid var(--brass);
-    padding: 0.75rem 0.9rem;
-    margin-top: 0.55rem;
-    border-radius: 6px;
-  }
-  .result-card:first-child { margin-top: 0; }
-
-  .result-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 0.5rem;
-    margin-bottom: 0.25rem;
-  }
-
-  .result-name {
-    font-family: Georgia, serif;
-    font-weight: 700;
-    font-size: 1.04rem;
-    color: var(--navy);
-  }
-
-  .room-badge {
-    font-size: 0.74rem;
-    font-weight: 700;
-    background: var(--navy);
-    color: var(--paper);
-    padding: 0.15rem 0.5rem;
-    border-radius: 4px;
-    white-space: nowrap;
-  }
-
-  .result-meta {
-    font-size: 0.81rem;
-    font-weight: 600;
-    color: #7D6B49;
-    margin-bottom: 0.45rem;
-  }
-
-  .result-desc {
-    font-size: 0.91rem;
-    color: var(--ink);
-    margin: 0;
-  }
-
-  /* ============================================
-     CHIPS & QUICK BAR
-     ============================================ */
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.45rem;
-    margin-top: 0.65rem;
-  }
-
-  .quick-bar {
-    display: flex;
-    gap: 0.45rem;
-    overflow-x: auto;
-    padding-bottom: 0.55rem;
-    scrollbar-width: none;
-  }
-  .quick-bar::-webkit-scrollbar { display: none; }
-
-  button.chip {
-    font-family: system-ui, -apple-system, Arial, sans-serif;
-    border: 1px solid var(--brass);
-    background: var(--paper-tint);
-    color: var(--navy);
-    border-radius: 999px;
-    padding: 0.36rem 0.8rem;
-    font-size: 0.81rem;
-    font-weight: 600;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: all 0.15s ease;
-  }
-  button.chip:hover {
-    background: var(--brass);
-    color: #FFFFFF;
-  }
-
-  /* ============================================
-     INPUT ROW & FOOTER
-     ============================================ */
-  .input-dock {
-    border-top: 1px solid var(--line);
-    padding-top: 0.7rem;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 3px solid var(--cb-gold);
     flex-shrink: 0;
   }
-
-  .chat-input-row {
-    display: flex;
-    gap: 0.5rem;
+  .cb-logo{
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    background: #fff;
+    border-radius: 8px;
+    padding: 4px;
+    flex-shrink: 0;
   }
-
-  #chat-input {
+  .cb-header-text{ flex: 1; min-width: 0; }
+  .cb-header-text h1{
+    margin: 0;
+    font-family: var(--cb-font-head);
+    font-weight: 600;
+    font-size: 17px;
+    color: #fff;
+    letter-spacing: 0.2px;
+  }
+  .cb-header-text p{
+    margin: 2px 0 0;
+    font-size: 11.5px;
+    color: var(--cb-gold-soft);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .cb-close{
+    background: transparent;
+    border: none;
+    color: #EDE7D6;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+  .cb-close:hover{ background: rgba(255,255,255,0.08); }
+ 
+  /* ---------- Body + watermark background ---------- */
+  .cb-body{
+    position: relative;
     flex: 1;
-    font-family: system-ui, -apple-system, Arial, sans-serif;
-    font-size: 0.95rem;
-    padding: 0.72rem 0.95rem;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    background: #FFFFFF;
-    color: var(--ink);
+    overflow: hidden;
+    background: var(--cb-paper);
   }
-  #chat-input:focus {
-    outline: 2px solid var(--navy);
-    outline-offset: 1px;
+  .cb-body::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url('pvg_entrance.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.08;
+    filter: grayscale(20%);
+    z-index: 0;
   }
-
-  .mic-btn {
-    background: #FFFFFF;
-    color: var(--navy);
-    border: 1px solid var(--line);
+  .cb-messages{
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    overflow-y: auto;
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 720px;
+    width: 100%;
+    margin: 0 auto;
+  }
+ 
+  /* ---------- Message bubbles ---------- */
+  .cb-msg{
+    max-width: 84%;
+    font-size: 13.5px;
+    line-height: 1.5;
+    padding: 10px 12px;
+    border-radius: 12px;
+    animation: cb-rise 0.18s ease;
+  }
+  @keyframes cb-rise{
+    from{ opacity: 0; transform: translateY(6px); }
+    to{ opacity: 1; transform: translateY(0); }
+  }
+  .cb-msg.bot{
+    align-self: flex-start;
+    background: #fff;
+    color: var(--cb-ink);
+    border-left: 3px solid var(--cb-gold);
+    box-shadow: 0 2px 8px rgba(16,35,63,0.06);
+  }
+  .cb-msg.bot .cb-loc-name{
+    display: block;
+    font-family: var(--cb-font-head);
+    font-weight: 600;
+    font-size: 14.5px;
+    color: var(--cb-navy);
+    margin-bottom: 3px;
+  }
+  .cb-msg.user{
+    align-self: flex-end;
+    background: var(--cb-navy);
+    color: #F6F1E3;
+  }
+  .cb-msg .cb-chip-row{
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .cb-msg .cb-chip-row button{
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--cb-line);
+    background: var(--cb-paper);
+    color: var(--cb-navy);
+    cursor: pointer;
+  }
+  .cb-msg .cb-chip-row button:hover{ border-color: var(--cb-gold); }
+ 
+  /* ---------- Quick suggestion chips ---------- */
+  .cb-suggestions{
+    flex-shrink: 0;
+    display: flex;
+    gap: 6px;
+    padding: 8px 16px;
+    overflow-x: auto;
+    border-top: 1px solid var(--cb-line);
+    background: var(--cb-paper);
+    max-width: 720px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .cb-chip{
+    flex-shrink: 0;
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--cb-line);
+    background: #fff;
+    color: var(--cb-navy);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .cb-chip:hover{ border-color: var(--cb-gold); background: #FFFBF0; }
+ 
+  /* ---------- Input row ---------- */
+  .cb-input-row{
+    flex-shrink: 0;
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px;
+    border-top: 1px solid var(--cb-line);
+    background: #fff;
+    max-width: 720px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  #campusBotInput{
+    flex: 1;
+    border: 1px solid var(--cb-line);
     border-radius: 10px;
-    padding: 0 0.85rem;
-    font-size: 1rem;
+    padding: 10px 12px;
+    font-size: 13.5px;
+    outline: none;
+    background: var(--cb-paper);
+    color: var(--cb-ink);
+  }
+  #campusBotInput:focus{ border-color: var(--cb-gold); }
+  .cb-send{
+    width: 40px;
+    border: none;
+    border-radius: 10px;
+    background: var(--cb-navy);
+    color: var(--cb-gold-soft);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
   }
-  .mic-btn.listening {
-    background: #B91C1C;
-    color: #FFFFFF;
-    border-color: #B91C1C;
+  .cb-send:hover{ background: var(--cb-navy-deep); }
+ 
+  /* ---------- Credit line ---------- */
+  .cb-credit{
+    flex-shrink: 0;
+    text-align: center;
+    font-size: 11px;
+    color: var(--cb-slate);
+    background: #fff;
+    padding: 6px 0 10px;
+    margin: 0;
   }
 
-  .ask-btn {
-    font-family: system-ui, -apple-system, Arial, sans-serif;
-    font-weight: 700;
-    font-size: 0.92rem;
-    background: var(--navy);
-    color: var(--paper);
+  .cb-map-chip{
+    flex-shrink: 0;
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--cb-gold);
+    background: var(--cb-navy);
+    color: var(--cb-gold-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .cb-map-chip:hover{ background: var(--cb-navy-deep); }
+ 
+  .cb-nav-btn{
+    display: block;
+    margin-top: 10px;
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 8px 12px;
     border: none;
-    border-radius: 10px;
-    padding: 0 1.35rem;
+    border-radius: 8px;
+    background: var(--cb-navy);
+    color: var(--cb-gold-soft);
     cursor: pointer;
   }
-  .ask-btn:hover { background: var(--navy-dark); }
-
-  .site-footer {
-    text-align: center;
-    font-family: system-ui, -apple-system, Arial, sans-serif;
-    font-size: 0.74rem;
-    color: #7A868E;
-    padding: 0.55rem 0 0.25rem;
+  .cb-nav-btn:hover{ background: var(--cb-navy-deep); }
+ 
+  /* Map screen */
+  .cm-panel{
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: none;
+    flex-direction: column;
+    background: var(--cb-paper);
+    font-family: var(--cb-font-body);
   }
+  .cm-panel.cm-open{ display: flex; }
+  .cm-panel *{ box-sizing: border-box; }
+ 
+  #campusMap{ flex: 1; min-height: 0; }
+ 
+  .cm-controls{
+    flex-shrink: 0;
+    display: grid;
+    gap: 8px;
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 12px 16px 14px;
+    background: #fff;
+    border-top: 1px solid var(--cb-line);
+  }
+  .cm-controls label{ display: grid; gap: 3px; font-size: 13px; font-weight: 600; color: var(--cb-navy); }
+  .cm-controls select{
+    font: inherit; font-weight: 400; padding: 9px;
+    border: 1px solid var(--cb-line); border-radius: 8px;
+    background: var(--cb-paper); color: var(--cb-ink);
+  }
+  .cm-row{ display: flex; gap: 8px; }
+  .cm-controls button{
+    font: inherit; font-weight: 600; padding: 11px 14px;
+    border: none; border-radius: 8px; cursor: pointer;
+  }
+  #cmGo{ flex: 1; background: var(--cb-navy); color: var(--cb-gold-soft); }
+  #cmStop{ background: #EDE7D6; color: var(--cb-navy); }
+  .cm-controls button:disabled{ opacity: .5; cursor: default; }
+  #cmStatus{ margin: 0; font-size: 14px; color: var(--cb-ink); min-height: 1.3em; }
 </style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
 
-  <!-- HEADER WITH PVG LOGO MARK -->
-  <header class="site-header">
-    <div class="header-inner">
-      <div class="brand">
-        <span class="brand-mark">PVG</span>
-        <div class="brand-text">
-          <h1>Campus Guide</h1>
-          <p id="status-subtitle">PVG's College of Engineering &amp; Technology</p>
-        </div>
+  <!-- FLOATING LAUNCHER -->
+  <button id="campusBotLauncher" class="cb-launcher" aria-label="Open Campus Guide">
+    <svg class="cb-launcher-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <img id="campusBotLauncherLogo" class="cb-launcher-logo" src="pvg_logo.png" alt="Logo">
+  </button>
+
+  <!-- CHATBOT PANEL -->
+  <div id="campusBotPanel" class="cb-panel" aria-hidden="true">
+    <header class="cb-header">
+      <img src="pvg_logo.png" alt="PVG Logo" class="cb-logo" onerror="this.style.display='none'">
+      <div class="cb-header-text">
+        <h1>PVG COET Campus Guide</h1>
+        <p>Find any lab, office, or facility</p>
       </div>
-      <button type="button" class="clear-btn" id="clear-btn">Clear</button>
+      <button id="campusBotClose" class="cb-close" aria-label="Close Guide">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </header>
+
+    <div class="cb-body">
+      <div id="campusBotMessages" class="cb-messages"></div>
     </div>
-  </header>
 
-  <!-- CHAT SHELL -->
-  <main class="chat-shell">
-    <div id="chat-log" class="chat-log"></div>
-
-    <div class="input-dock">
-      <div class="quick-bar" id="quick-bar"></div>
-      <form id="chat-form" class="chat-input-row">
-        <input type="text" id="chat-input" placeholder="Ask e.g. where is the principal office?" autocomplete="off" required>
-        <button type="button" id="mic-btn" class="mic-btn" title="Voice Search">🎤</button>
-        <button type="submit" class="ask-btn">Ask</button>
-      </form>
-      <footer class="site-footer">
-        PVG's College of Engineering and Technology &middot; Made by Ganesh Umape
-      </footer>
+    <div id="campusBotSuggestions" class="cb-suggestions">
+      <button class="cb-map-chip" id="cbMapChip">🗺️ Live map</button>
+      <button class="cb-chip" data-q="Principal Office">Principal Office</button>
+      <button class="cb-chip" data-q="FE HOD Office">FE HOD Office</button>
+      <button class="cb-chip" data-q="Computer Lab">Computer Lab</button>
+      <button class="cb-chip" data-q="Library">Library</button>
+      <button class="cb-chip" data-q="Washroom">Washroom</button>
     </div>
-  </main>
 
-  <script>
-    const norm = s => (s || '')
-      .toLowerCase()
-      .replace(/['’]/g, '')
-      .replace(/&/g, ' and ')
-      .replace(/[^a-z0-9 ]+/g, ' ')
-      .replace(/\s+/g, ' ')
-      .trim();
+    <form id="campusBotForm" class="cb-input-row">
+      <input type="text" id="campusBotInput" placeholder="Ask about any room, office, or facility..." autocomplete="off">
+      <button type="submit" class="cb-send" aria-label="Send">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+      </button>
+    </form>
+    <p class="cb-credit">PVG's College of Engineering and Technology &middot; Made by Ganesh Umape</p>
+  </div>
 
-    const has = (q, k) => (' ' + q + ' ').includes(' ' + k + ' ');
+  <!-- LIVE MAP PANEL -->
+  <div id="campusMapPanel" class="cm-panel" aria-hidden="true">
+    <div id="campusMap"></div>
+    <div class="cm-controls">
+      <div class="cm-row">
+        <label style="flex:1">From: <select id="cmFrom"></select></label>
+        <label style="flex:1">To: <select id="cmTo"></select></label>
+      </div>
+      <p id="cmStatus">Choose your destination, then tap Start navigation.</p>
+      <div class="cm-row">
+        <button id="cmGo" type="button">Start navigation</button>
+        <button id="cmStop" type="button" disabled>Stop</button>
+        <button id="campusMapBack" type="button">Back to chat</button>
+      </div>
+    </div>
+  </div>
 
-    let DATA = null;
-    let BLD = [];
-    let VOCAB = new Set();
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function () {
+  let DATA = null;
 
-    function initData(raw) {
-      if (Array.isArray(raw)) {
-        const bMap = new Map();
-        const locations = raw.map((item, idx) => {
-          const bName = item.building || 'Main Campus';
-          const bId = norm(bName).replace(/\s+/g, '_') || 'main';
-          if (!bMap.has(bId)) bMap.set(bId, { id: bId, name: bName, aliases: [bName] });
-          return {
-            id: item.id || idx,
-            name: item.name || 'Unnamed Location',
-            building_id: bId,
-            building: bName,
-            category: item.category || '',
-            floor: item.floor || '',
-            rooms: item.roomNo || item.rooms || '',
-            description: item.location || item.description || 'No detailed directions recorded yet.',
-            keywords: item.keywords || [item.name, item.category, item.roomNo, item.rooms, item.building].filter(Boolean),
-            needs_verification: Boolean(item.needs_verification)
-          };
-        });
-        DATA = { buildings: [...bMap.values()], locations };
-      } else {
-        DATA = raw;
-      }
+  /* 1) Pin points (latitude, longitude) */
+  const PLACES = [
+    { name: "PVG College Gate", lat: 18.489722, lng: 73.853583 },
+    { name: "Girls Hostel", lat: 18.489556, lng: 73.853528 },
+    { name: "Boys Hostel", lat: 18.489889, lng: 73.853306 },
+    { name: "Cycle Parking", lat: 18.489556, lng: 73.853222 },
+    { name: "Library & Workshop Building", lat: 18.489444, lng: 73.852111 },
+    { name: "Muktangan Playground", lat: 18.490028, lng: 73.851472 },
+    { name: "Muktangan English Medium School", lat: 18.489917, lng: 73.851917 },
+    { name: "MBA 2nd Building", lat: 18.490250, lng: 73.853361 },
+    { name: "MBA Building", lat: 18.490188, lng: 73.853063 },
+    { name: "FE Building", lat: 18.489888, lng: 73.853578 },
+    { name: "Main Building", lat: 18.489938, lng: 73.852438 }
+  ];
 
-      BLD = (DATA.buildings || []).map(b => ({
-        id: b.id,
-        name: b.name,
-        aliases: [...new Set([...(b.aliases || []), b.name].map(norm))].filter(Boolean)
-      }));
+  const BUILDINGS = [
+    [/fe building/i, "FE Building"],
+    [/boys hostel/i, "Boys Hostel"],
+    [/girls hostel/i, "Girls Hostel"],
+    [/main building/i, "Main Building"],
+    [/muktangan/i, "Muktangan English Medium School"],
+    [/auditorium/i, "Library & Workshop Building"]
+  ];
 
-      (DATA.locations || []).forEach(l => {
-        const rawKws = [...(l.keywords || []), l.name, l.category, l.building, l.rooms ? 'room ' + l.rooms : ''];
-        l._kw = [...new Set(rawKws.map(norm))].filter(k => k && !/^\d{1,2}$/.test(k));
-        l._blob = norm([l.name, l.category, l.description, l.floor, l.rooms, l.building].filter(Boolean).join(' '));
-        l._kw.forEach(k => k.split(' ').forEach(w => w.length >= 3 && VOCAB.add(w)));
-      });
+  const ARRIVED_M = 20;
+  const WALK_M_PER_MIN = 80;
 
-      const sub = document.getElementById('status-subtitle');
-      if (sub && DATA.locations.length) {
-        sub.textContent = `PVG's College of Engineering & Technology · ${DATA.locations.length} locations indexed`;
-      }
+  const $ = id => document.getElementById(id);
+  const panel = $("campusMapPanel"), fromSel = $("cmFrom"), toSel = $("cmTo");
+  const goBtn = $("cmGo"), stopBtn = $("cmStop");
+  const say = t => { $("cmStatus").textContent = t; };
+
+  let map = null, me = null, route = null, trail = null;
+  let trailPts = [], watchId = null, dest = null, destLL = null, first = true;
+  const routeStyle = { color: "#10233F", weight: 5, dashArray: "8 10" };
+
+  fromSel.add(new Option("My current location", "gps"));
+  toSel.add(new Option("Select destination", ""));
+  PLACES.forEach((p, i) => { fromSel.add(new Option(p.name, i)); toSel.add(new Option(p.name, i)); });
+
+  const rad = x => x * Math.PI / 180;
+  function dist(a, b) {
+    const dLat = rad(b[0] - a[0]), dLng = rad(b[1] - a[1]);
+    const h = Math.sin(dLat / 2) ** 2 + Math.cos(rad(a[0])) * Math.cos(rad(b[0])) * Math.sin(dLng / 2) ** 2;
+    return 2 * 6371000 * Math.asin(Math.sqrt(h));
+  }
+
+  function initMap() {
+    if (map) return;
+    map = L.map("campusMap").setView([18.4898, 73.8527], 18);
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19, attribution: "© OpenStreetMap contributors"
+    }).addTo(map);
+    PLACES.forEach((p, i) => {
+      L.circleMarker([p.lat, p.lng], { radius: 8, color: "#10233F", weight: 3, fillColor: "#C6981F", fillOpacity: 1 })
+        .addTo(map).bindTooltip(p.name)
+        .on("click", () => { toSel.value = i; });
+    });
+  }
+
+  function clearLayers() {
+    [me, route, trail].forEach(l => l && map.removeLayer(l));
+    me = route = trail = null; trailPts = [];
+  }
+
+  function stop() {
+    if (watchId !== null) navigator.geolocation.clearWatch(watchId);
+    watchId = null;
+    goBtn.disabled = false; stopBtn.disabled = true;
+  }
+
+  function start() {
+    if (toSel.value === "") { say("Select a destination first."); return; }
+    if (!navigator.geolocation) { say("This browser can’t share your location."); return; }
+    stop(); clearLayers();
+    dest = PLACES[toSel.value]; destLL = [dest.lat, dest.lng]; first = true;
+    trail = L.polyline([], { color: "#C6981F", weight: 5 }).addTo(map);
+
+    if (fromSel.value !== "gps") {
+      const f = PLACES[fromSel.value];
+      route = L.polyline([[f.lat, f.lng], destLL], routeStyle).addTo(map);
+      map.fitBounds(route.getBounds(), { padding: [60, 60] });
+      say(`${Math.round(dist([f.lat, f.lng], destLL))} m from ${f.name} to ${dest.name}. Waiting for your GPS location…`);
+    } else {
+      say("Finding your location…");
     }
+    watchId = navigator.geolocation.watchPosition(onPos, onErr,
+      { enableHighAccuracy: true, maximumAge: 2000, timeout: 20000 });
+    goBtn.disabled = true; stopBtn.disabled = false;
+  }
 
-    function search(raw) {
-      let q = norm(raw);
+  function onPos(pos) {
+    const here = [pos.coords.latitude, pos.coords.longitude];
+    if (!me) me = L.circleMarker(here, { radius: 9, color: "#fff", weight: 3, fillColor: "#1f6feb", fillOpacity: 1 }).addTo(map);
+    else me.setLatLng(here);
+    trailPts.push(here); trail.setLatLngs(trailPts);
 
-      // --- SMART BROAD CATEGORY INTERCEPTORS ---
-      if (q === 'office' || q === 'offices') {
-        const offices = DATA.locations.filter(l => norm(l.name).includes('office') || norm(l.category).includes('office'));
-        return { type: 'category_list', title: 'Here are all the offices available on campus. Which one do you mean?', options: offices };
-      }
-
-      if (q.includes('washroom') || q.includes('toilet') || q.includes('restroom')) {
-        const washrooms = DATA.locations.filter(l => norm(l.name).includes('washroom') || norm(l.name).includes('toilet') || norm(l.category).includes('washroom'));
-        return { type: 'category_list', title: 'Washrooms are available in multiple buildings. Please select one:', options: washrooms };
-      }
-      // ----------------------------------------
-
-      let sc = DATA.locations
-        .map(l => {
-          let s = 0;
-          l._kw.forEach(k => {
-            if (has(q, k)) s += k.split(' ').length * 4;
-            else if (q.includes(k) || k.includes(q)) s += 2;
-          });
-          if (l._blob && l._blob.includes(q)) s += 3;
-          return { l, s };
-        })
-        .filter(x => x.s > 0);
-
-      if (!sc.length) {
-        const tokens = q.split(' ').filter(w => w.length > 2);
-        sc = DATA.locations
-          .map(l => {
-            let s = 0;
-            tokens.forEach(t => {
-              if (l._blob && l._blob.includes(t)) s += 1;
-            });
-            return { l, s };
-          })
-          .filter(x => x.s > 0);
-      }
-
-      if (!sc.length) return { type: 'none' };
-
-      sc.sort((a, b) => b.s - a.s);
-      const max = sc[0].s;
-      const top = sc.filter(x => x.s === max).map(x => x.l);
-
-      if (top.length === 1) return { type: 'answer', loc: top[0] };
-      return { type: 'category_list', title: 'I found a few matching locations. Which one do you mean?', options: sc.slice(0, 10).map(x => x.l) };
+    if (fromSel.value === "gps") {
+      if (route) map.removeLayer(route);
+      route = L.polyline([here, destLL], routeStyle).addTo(map);
     }
+    if (first) { map.fitBounds([here, destLL], { padding: [60, 60] }); first = false; }
 
-    const chatLog = document.getElementById('chat-log');
-    const chatForm = document.getElementById('chat-form');
-    const chatInput = document.getElementById('chat-input');
-    const quickBar = document.getElementById('quick-bar');
+    const d = dist(here, destLL);
+    if (d <= ARRIVED_M) { say(`You have arrived at ${dest.name}.`); stop(); return; }
+    const mins = Math.max(1, Math.round(d / WALK_M_PER_MIN));
+    const weak = pos.coords.accuracy > 50 ? ` GPS signal is weak (±${Math.round(pos.coords.accuracy)} m).` : "";
+    say(`${Math.round(d)} m to ${dest.name}, about ${mins} min walk.${weak}`);
+  }
 
-    const QUICK = ['Principal Office', 'HOD Office', 'Computer Lab', 'Library', 'Washroom', 'Xerox'];
-
-    const bname = id => {
-      const found = DATA.buildings.find(b => b.id === id);
-      return found ? found.name : id;
+  function onErr(e) {
+    const msg = {
+      1: "Location is blocked. Allow location for this site in your browser settings, then try again.",
+      2: "Your location is not available. Move to an open area and try again.",
+      3: "Finding your location took too long. Move to an open area and try again."
     };
-    const shortName = n => (n || '').replace(/\s*\(.*?\)/, '');
+    say(msg[e.code] || "Could not get your location.");
+    stop();
+  }
 
-    function el(tag, cls, text) {
-      const e = document.createElement(tag);
-      if (cls) e.className = cls;
-      if (text !== undefined) e.textContent = text;
-      return e;
+  function openMap(destName) {
+    panel.classList.add("cm-open");
+    panel.setAttribute("aria-hidden", "false");
+    initMap();
+    setTimeout(() => map.invalidateSize(), 60);
+    if (destName) {
+      const i = PLACES.findIndex(p => p.name === destName);
+      if (i >= 0) toSel.value = i;
+      say("Tap Start navigation when you are ready to walk.");
+    } else {
+      say("Choose your destination, then tap Start navigation.");
     }
+  }
 
-    function addBotBubble() {
-      const div = el('div', 'message bot');
-      chatLog.appendChild(div);
-      chatLog.scrollTop = chatLog.scrollHeight;
-      return div;
-    }
+  function closeMap() {
+    stop();
+    panel.classList.remove("cm-open");
+    panel.setAttribute("aria-hidden", "true");
+  }
 
-    function addUserBubble(text) {
-      const div = el('div', 'message user');
-      div.appendChild(el('p', '', text));
-      chatLog.appendChild(div);
-      chatLog.scrollTop = chatLog.scrollHeight;
-    }
+  function placeForBuilding(text) {
+    const hit = BUILDINGS.find(b => b[0].test(text));
+    return hit ? hit[1] : null;
+  }
 
-    function makeChip(label, onClick) {
-      const btn = el('button', 'chip', label);
-      btn.type = 'button';
-      btn.onclick = onClick;
-      return btn;
-    }
+  goBtn.addEventListener("click", start);
+  stopBtn.addEventListener("click", () => { stop(); say("Navigation stopped."); });
+  $("campusMapBack").addEventListener("click", closeMap);
+  $("cbMapChip").addEventListener("click", () => openMap());
 
-    function appendChips(container, items) {
-      const wrap = el('div', 'chips');
-      items.forEach(([label, fn]) => wrap.appendChild(makeChip(label, fn)));
-      container.appendChild(wrap);
-      chatLog.scrollTop = chatLog.scrollHeight;
-    }
+  /* --- CHATBOT WIDGET & SEARCH LOGIC --- */
+  const launcher = $("campusBotLauncher");
+  const chatPanel = $("campusBotPanel");
+  const closeBtn = $("campusBotClose");
+  const chatForm = $("campusBotForm");
+  const chatInput = $("campusBotInput");
+  const messagesDiv = $("campusBotMessages");
 
-    function showAnswer(loc) {
-      const bubble = addBotBubble();
-      const card = el('div', 'result-card');
+  launcher.addEventListener("click", () => {
+    chatPanel.classList.add("cb-open");
+    chatPanel.setAttribute("aria-hidden", "false");
+    chatInput.focus();
+  });
 
-      const header = el('div', 'result-header');
-      header.appendChild(el('span', 'result-name', loc.name));
-      if (loc.rooms) {
-        header.appendChild(el('span', 'room-badge', 'Room ' + loc.rooms));
+  closeBtn.addEventListener("click", () => {
+    chatPanel.classList.remove("cb-open");
+    chatPanel.setAttribute("aria-hidden", "true");
+  });
+
+  document.querySelectorAll(".cb-suggestions .cb-chip").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const q = btn.getAttribute("data-q");
+      if (q) {
+        chatInput.value = q;
+        ask(q);
       }
-      card.appendChild(header);
+    });
+  });
 
-      const metaText = [shortName(loc.building || bname(loc.building_id)), loc.floor]
-        .filter(Boolean)
-        .join(' · ');
-      if (metaText) {
-        card.appendChild(el('div', 'result-meta', metaText));
-      }
+  chatForm.addEventListener("submit", e => {
+    e.preventDefault();
+    const val = chatInput.value.trim();
+    if (!val) return;
+    chatInput.value = "";
+    ask(val);
+  });
 
-      card.appendChild(el('p', 'result-desc', loc.description));
-      bubble.appendChild(card);
-      chatLog.scrollTop = chatLog.scrollHeight;
+  function addMsg(text, sender, isHtml = false) {
+    const div = document.createElement("div");
+    div.className = "cb-msg " + sender;
+    if (isHtml) {
+      div.innerHTML = text;
+    } else {
+      div.textContent = text;
     }
+    messagesDiv.appendChild(div);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    return div;
+  }
 
-    function showWelcome() {
-      chatLog.innerHTML = '';
-      const bubble = addBotBubble();
-      bubble.appendChild(el('p', '', 'Hi! I am your PVG campus assistant. Ask me where any office, lab, washroom, or facility is:'));
+  function initChat() {
+    messagesDiv.innerHTML = "";
+    addMsg("Hi! I'm your PVG campus assistant. Ask me where any lab, office, washroom, or facility is.", "bot");
+  }
 
-      const ul = el('ul', 'examples');
-      ['Principal Office', 'FE HOD Office', 'Washroom in Main Building', 'Computer Lab'].forEach(sample => {
-        const li = el('li', '', `"${sample}"`);
-        li.onclick = () => ask(sample);
-        ul.appendChild(li);
-      });
-      bubble.appendChild(ul);
-    }
-
-    function ask(q) {
-      const trimmed = q.trim();
-      if (!trimmed) return;
-
-      addUserBubble(trimmed);
-
-      if (!DATA) {
-        const b = addBotBubble();
-        b.appendChild(el('p', '', 'Campus data is still loading. Please try again in a moment.'));
-        return;
-      }
-
-      if (/^(hi|hii|hello|hey|namaste)\b/i.test(trimmed)) {
-        const b = addBotBubble();
-        b.appendChild(el('p', '', 'Hello! Ask me where any lab, office, washroom, or facility is on the PVG campus.'));
-        return;
-      }
-
-      const r = search(trimmed);
-
-      if (r.type === 'answer') {
-        return showAnswer(r.loc);
-      }
-
-      if (r.type === 'category_list') {
-        const b = addBotBubble();
-        b.appendChild(el('p', '', r.title));
-        return appendChips(
-          b,
-          r.options.map(l => {
-            const bLabel = shortName(l.building || bname(l.building_id));
-            const label = `${l.name} (${bLabel}${l.floor ? ' - ' + l.floor : ''})`;
-            return [
-              label,
-              () => {
-                addUserBubble(label);
-                showAnswer(l);
-              }
-            ];
-          })
-        );
-      }
-
-      // Fallback
-      const b = addBotBubble();
-      b.appendChild(el('p', '', 'I could not find that exact match on campus. Try selecting one of these common locations:'));
-      appendChips(b, QUICK.map(w => [w, () => ask(w)]));
-    }
-
-    QUICK.forEach(w => quickBar.appendChild(makeChip(w, () => ask(w))));
-
-    chatForm.addEventListener('submit', e => {
-      e.preventDefault();
-      const val = chatInput.value;
-      chatInput.value = '';
-      ask(val);
+  /* Fetch JSON data */
+  fetch("campus_data.json")
+    .then(r => r.ok ? r.json() : Promise.reject())
+    .then(d => { DATA = d; })
+    .catch(() => {
+      // Fallback sample data if fetch fails
+      DATA = { locations: [] };
     });
 
-    document.getElementById('clear-btn').addEventListener('click', showWelcome);
+  function search(raw) {
+    if (!DATA || !DATA.locations) return { type: 'none' };
+    let q = raw.toLowerCase().trim();
 
-    // Optional Voice Input (Web Speech API)
-    const micBtn = document.getElementById('mic-btn');
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (SpeechRecognition) {
-      const recognition = new SpeechRecognition();
-      recognition.lang = 'en-IN';
-      recognition.interimResults = false;
-
-      micBtn.addEventListener('click', () => {
-        try {
-          recognition.start();
-          micBtn.classList.add('listening');
-        } catch (_) {}
-      });
-
-      recognition.onresult = event => {
-        const transcript = event.results[0][0].transcript;
-        chatInput.value = transcript;
-        ask(transcript);
-      };
-
-      recognition.onend = () => micBtn.classList.remove('listening');
-      recognition.onerror = () => micBtn.classList.remove('listening');
-    } else {
-      micBtn.style.display = 'none';
+    // Intercept broad category queries
+    if (q === 'office' || q === 'offices') {
+      const offices = DATA.locations.filter(l => (l.name + ' ' + (l.category || '')).toLowerCase().includes('office'));
+      return { type: 'category_list', title: 'Here are all the offices on campus:', options: offices };
+    }
+    if (q.includes('washroom') || q.includes('toilet') || q.includes('restroom')) {
+      const washrooms = DATA.locations.filter(l => (l.name + ' ' + (l.category || '')).toLowerCase().match(/washroom|toilet|restroom/));
+      return { type: 'category_list', title: 'Here are the washrooms across campus:', options: washrooms };
     }
 
-    showWelcome();
-
-    fetch('campus_data.json')
-      .then(r => (r.ok ? r.json() : Promise.reject()))
-      .catch(() => fetch('data/campus_data.json').then(r => r.json()))
-      .then(initData)
-      .catch(() => {
-        const b = addBotBubble();
-        b.appendChild(el('p', '', 'Could not load campus_data.json. Make sure it is placed in the root folder or inside /data/.'));
+    // Keyword scoring search
+    let sc = DATA.locations.map(l => {
+      let s = 0;
+      const blob = [l.name, l.building, l.category, l.description, ...(l.keywords || [])].join(' ').toLowerCase();
+      if (blob.includes(q)) s += 5;
+      q.split(' ').forEach(w => {
+        if (w.length > 2 && blob.includes(w)) s += 2;
       });
-  </script>
+      return { l, s };
+    }).filter(x => x.s > 0);
+
+    if (!sc.length) return { type: 'none' };
+
+    sc.sort((a, b) => b.s - a.s);
+    const max = sc[0].s;
+    const top = sc.filter(x => x.s === max).map(x => x.l);
+
+    if (top.length === 1) return { type: 'answer', loc: top[0] };
+    return { type: 'category_list', title: 'I found a few matching locations. Which one do you mean?', options: sc.slice(0, 8).map(x => x.l) };
+  }
+
+  function ask(q) {
+    addMsg(q, "user");
+
+    if (/^(hi|hii|hello|hey|namaste)\b/i.test(q)) {
+      addMsg("Hello! Ask me where any lab, office, washroom, or facility is on the PVG campus.", "bot");
+      return;
+    }
+
+    const res = search(q);
+
+    if (res.type === 'answer') {
+      showAnswerCard(res.loc);
+      return;
+    }
+
+    if (res.type === 'category_list') {
+      const botDiv = addMsg(res.title, "bot");
+      const chipRow = document.createElement("div");
+      chipRow.className = "cb-chip-row";
+      res.options.forEach(l => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.textContent = `${l.name} (${l.building || ''})`;
+        btn.onclick = () => {
+          chatInput.value = l.name;
+          ask(l.name);
+        };
+        chipRow.appendChild(btn);
+      });
+      botDiv.appendChild(chipRow);
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+      return;
+    }
+
+    addMsg("I could not find that exact location on campus. Try asking for 'Principal Office', 'FE HOD Office', 'Library', or 'Washroom'.", "bot");
+  }
+
+  function showAnswerCard(loc) {
+    const html = `
+      <span class="cb-loc-name">${loc.name}</span>
+      <div style="font-size:12px; color:#7D6B49; font-weight:600; margin-bottom:4px;">${loc.building || ''} ${loc.floor ? '· ' + loc.floor : ''} ${loc.rooms ? '· Room ' + loc.rooms : ''}</div>
+      <p style="margin:0 0 6px;">${loc.description || ''}</p>
+    `;
+    const botDiv = addMsg(html, "bot", true);
+
+    // Check if building maps to live map navigation
+    const place = placeForBuilding(loc.building || loc.name);
+    if (place) {
+      const navBtn = document.createElement("button");
+      navBtn.type = "button";
+      navBtn.className = "cb-nav-btn";
+      navBtn.textContent = "Navigate to " + place;
+      navBtn.addEventListener("click", () => openMap(place));
+      botDiv.appendChild(navBtn);
+    }
+  }
+
+  initChat();
+})();
+</script>
 </body>
 </html>
