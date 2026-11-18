@@ -20,9 +20,7 @@
     --warn-ink: #8A5A00;
   }
 
-  * {
-    box-sizing: border-box;
-  }
+  * { box-sizing: border-box; }
 
   body {
     margin: 0;
@@ -34,9 +32,6 @@
     flex-direction: column;
   }
 
-  /* ============================================
-     HEADER
-     ============================================ */
   .site-header {
     background: var(--paper);
     border-bottom: 2px solid var(--navy);
@@ -103,9 +98,6 @@
     border-color: var(--brass);
   }
 
-  /* ============================================
-     CHAT AREA
-     ============================================ */
   .chat-shell {
     flex: 1;
     width: 100%;
@@ -143,13 +135,8 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  .message p {
-    margin: 0 0 0.5rem;
-  }
-
-  .message p:last-child {
-    margin-bottom: 0;
-  }
+  .message p { margin: 0 0 0.5rem; }
+  .message p:last-child { margin-bottom: 0; }
 
   .message.bot {
     background: var(--paper-card);
@@ -172,20 +159,15 @@
     color: var(--ink-muted);
     font-size: 0.88rem;
   }
-
   .examples li {
     margin-bottom: 0.2rem;
     cursor: pointer;
   }
-
   .examples li:hover {
     color: var(--navy);
     text-decoration: underline;
   }
 
-  /* ============================================
-     RESULT CARD
-     ============================================ */
   .result-card {
     background: var(--paper-tint);
     border: 1px solid #E5DEC9;
@@ -194,10 +176,7 @@
     margin-top: 0.55rem;
     border-radius: 6px;
   }
-
-  .result-card:first-child {
-    margin-top: 0;
-  }
+  .result-card:first-child { margin-top: 0; }
 
   .result-header {
     display: flex;
@@ -248,9 +227,6 @@
     border-radius: 4px;
   }
 
-  /* ============================================
-     INTERACTIVE CHIPS (Inline & Footer)
-     ============================================ */
   .chips {
     display: flex;
     flex-wrap: wrap;
@@ -265,10 +241,7 @@
     padding-bottom: 0.55rem;
     scrollbar-width: none;
   }
-
-  .quick-bar::-webkit-scrollbar {
-    display: none;
-  }
+  .quick-bar::-webkit-scrollbar { display: none; }
 
   button.chip {
     font-family: system-ui, -apple-system, Arial, sans-serif;
@@ -283,15 +256,11 @@
     white-space: nowrap;
     transition: all 0.15s ease;
   }
-
   button.chip:hover {
     background: var(--brass);
     color: #FFFFFF;
   }
 
-  /* ============================================
-     INPUT ROW & FOOTER
-     ============================================ */
   .input-dock {
     border-top: 1px solid var(--line);
     padding-top: 0.7rem;
@@ -313,7 +282,6 @@
     background: #FFFFFF;
     color: var(--ink);
   }
-
   #chat-input:focus {
     outline: 2px solid var(--navy);
     outline-offset: 1px;
@@ -330,14 +298,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.15s ease;
   }
-
-  .mic-btn:hover {
-    border-color: var(--navy);
-    background: var(--paper-tint);
-  }
-
   .mic-btn.listening {
     background: #B91C1C;
     color: #FFFFFF;
@@ -354,12 +315,8 @@
     border-radius: 10px;
     padding: 0 1.35rem;
     cursor: pointer;
-    transition: background 0.15s ease;
   }
-
-  .ask-btn:hover {
-    background: var(--navy-dark);
-  }
+  .ask-btn:hover { background: var(--navy-dark); }
 
   .site-footer {
     text-align: center;
@@ -372,7 +329,6 @@
 </head>
 <body>
 
-  <!-- HEADER -->
   <header class="site-header">
     <div class="header-inner">
       <div class="brand">
@@ -382,25 +338,18 @@
           <p id="status-subtitle">PVG's College of Engineering &amp; Technology</p>
         </div>
       </div>
-      <button type="button" class="clear-btn" id="clear-btn" title="Clear conversation">Clear</button>
+      <button type="button" class="clear-btn" id="clear-btn">Clear</button>
     </div>
   </header>
 
-  <!-- MAIN CHAT SHELL -->
   <main class="chat-shell">
     <div id="chat-log" class="chat-log"></div>
 
     <div class="input-dock">
       <div class="quick-bar" id="quick-bar"></div>
       <form id="chat-form" class="chat-input-row">
-        <input
-          type="text"
-          id="chat-input"
-          placeholder="Ask e.g. where is the principal office?"
-          autocomplete="off"
-          required
-        >
-        <button type="button" id="mic-btn" class="mic-btn" title="Voice search" aria-label="Voice search">🎤</button>
+        <input type="text" id="chat-input" placeholder="Ask e.g. where is the principal office?" autocomplete="off" required>
+        <button type="button" id="mic-btn" class="mic-btn">🎤</button>
         <button type="submit" class="ask-btn">Ask</button>
       </form>
       <footer class="site-footer">
@@ -410,9 +359,6 @@
   </main>
 
   <script>
-    /* ============================================================
-       1. NORMALIZATION & FUZZY SEARCH ENGINE (From Old Code)
-       ============================================================ */
     const norm = s => (s || '')
       .toLowerCase()
       .replace(/['’]/g, '')
@@ -427,89 +373,6 @@
     let BLD = [];
     let VOCAB = new Set();
 
-    function lev(a, b) {
-      const m = [...Array(a.length + 1)].map((_, i) => [i]);
-      for (let j = 1; j <= b.length; j++) m[0][j] = j;
-      for (let i = 1; i <= a.length; i++) {
-        for (let j = 1; j <= b.length; j++) {
-          m[i][j] = Math.min(
-            m[i - 1][j] + 1,
-            m[i][j - 1] + 1,
-            m[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)
-          );
-        }
-      }
-      return m[a.length][b.length];
-    }
-
-    function correct(q) {
-      return q.split(' ').map(t => {
-        if (t.length < 5 || VOCAB.has(t)) return t;
-        let best = t;
-        let bd = t.length >= 8 ? 3 : 2;
-        VOCAB.forEach(w => {
-          const d = lev(t, w);
-          if (d < bd && Math.abs(w.length - t.length) <= 2) {
-            bd = d;
-            best = w;
-          }
-        });
-        return best;
-      }).join(' ');
-    }
-
-    function getFloor(q) {
-      let m = q.match(/\b(\d)(?:st|nd|rd|th)? floor\b/) || q.match(/\bfloor (\d)\b/);
-      if (m) return { n: +m[1], q: q.replace(m[0], ' ').replace(/\s+/g, ' ').trim() };
-      m = q.match(/\bground floor\b/);
-      return m ? { n: 0, q: q.replace(m[0], ' ').replace(/\s+/g, ' ').trim() } : null;
-    }
-
-    const floorNum = l => {
-      const fl = String(l.floor || '');
-      if (/^(ground|0)/i.test(fl)) return 0;
-      return /^(\d)/.test(fl) ? +fl[0] : null;
-    };
-
-    function detectBuilding(q) {
-      let best = null;
-      let len = 0;
-      BLD.forEach(b => {
-        b.aliases.forEach(a => {
-          if (a && has(q, a) && a.length > len) {
-            best = b;
-            len = a.length;
-          }
-        });
-      });
-      return best;
-    }
-
-    function stripBuildingFromQuery(raw, building) {
-      if (!building) return raw;
-      let cleaned = norm(raw);
-      building.aliases.forEach(a => {
-        if (a) cleaned = (' ' + cleaned + ' ').replace(' ' + a + ' ', ' ').trim();
-      });
-      return cleaned || raw;
-    }
-
-    function score(q, l) {
-      let s = 0;
-      l._kw.forEach(k => {
-        if (has(q, k)) {
-          s += k.split(' ').length * 2;
-        }
-      });
-      // Token-level fallback bonus so multi-word queries match partial keywords smoothly
-      const qTokens = q.split(' ').filter(w => w.length >= 3);
-      qTokens.forEach(tok => {
-        if (l._blob && has(l._blob, tok)) s += 1;
-      });
-      return s;
-    }
-
-    /* Supports BOTH structured {buildings, locations} JSON and flat array JSON */
     function initData(raw) {
       if (Array.isArray(raw)) {
         const bMap = new Map();
@@ -522,10 +385,11 @@
             name: item.name || 'Unnamed Location',
             building_id: bId,
             building: bName,
+            category: item.category || '',
             floor: item.floor || '',
             rooms: item.roomNo || item.rooms || '',
             description: item.location || item.description || 'No detailed directions recorded yet.',
-            keywords: [item.name, item.category, item.roomNo, item.rooms].filter(Boolean),
+            keywords: [item.name, item.category, item.roomNo, item.rooms, item.building].filter(Boolean),
             needs_verification: Boolean(item.needs_verification)
           };
         });
@@ -541,10 +405,10 @@
       }));
 
       (DATA.locations || []).forEach(l => {
-        const rawKws = [...(l.keywords || []), l.name, l.rooms ? 'room ' + l.rooms : ''];
+        const rawKws = [...(l.keywords || []), l.name, l.category, l.rooms ? 'room ' + l.rooms : ''];
         l._kw = [...new Set(rawKws.map(norm))].filter(k => k && !/^\d{1,2}$/.test(k));
-        l._blob = norm([l.name, l.description, l.floor, l.rooms].filter(Boolean).join(' '));
-        l._kw.forEach(k => k.split(' ').forEach(w => w.length >= 5 && VOCAB.add(w)));
+        l._blob = norm([l.name, l.category, l.description, l.floor, l.rooms, l.building].filter(Boolean).join(' '));
+        l._kw.forEach(k => k.split(' ').forEach(w => w.length >= 4 && VOCAB.add(w)));
       });
 
       const sub = document.getElementById('status-subtitle');
@@ -555,51 +419,57 @@
 
     function search(raw) {
       let q = norm(raw);
-      const f = getFloor(q);
-      if (f) q = f.q;
-      q = correct(q);
 
-      const b = detectBuilding(q);
+      // --- SMART BROAD CATEGORY INTERCEPTORS ---
+      // If user types just "office" or asks for offices in general, list all offices
+      if (q === 'office' || q === 'offices') {
+        const offices = DATA.locations.filter(l => norm(l.name).includes('office') || norm(l.category).includes('office'));
+        return { type: 'category_list', title: 'Here are the offices available on campus:', options: offices };
+      }
+
+      // If user types "washroom" or "toilet", list washrooms across buildings
+      if (q.includes('washroom') || q.includes('toilet') || q.includes('restroom')) {
+        const washrooms = DATA.locations.filter(l => norm(l.name).includes('washroom') || norm(l.name).includes('toilet') || norm(l.category).includes('washroom'));
+        return { type: 'category_list', title: 'Here are the washrooms available across campus buildings:', options: washrooms };
+      }
+      // ----------------------------------------
+
       let sc = DATA.locations
-        .map(l => ({ l, s: score(q, l) }))
+        .map(l => {
+          let s = 0;
+          l._kw.forEach(k => {
+            if (has(q, k)) s += k.split(' ').length * 3;
+            else if (q.includes(k) || k.includes(q)) s += 1;
+          });
+          if (l._blob && l._blob.includes(q)) s += 2;
+          return { l, s };
+        })
         .filter(x => x.s > 0);
 
-      if (b) {
-        const inB = sc.filter(x => x.l.building_id === b.id);
-        if (!inB.length) {
-          return sc.length
-            ? {
-                type: 'not_in_building',
-                building: b,
-                cleanQuery: stripBuildingFromQuery(raw, b),
-                alts: [...new Set(sc.map(x => x.l.building_id))]
-              }
-            : { type: 'building_only', building: b };
-        }
-        sc = inB;
+      if (!sc.length) {
+        // Fallback token search
+        const tokens = q.split(' ').filter(w => w.length > 2);
+        sc = DATA.locations
+          .map(l => {
+            let s = 0;
+            tokens.forEach(t => {
+              if (l._blob && l._blob.includes(t)) s += 1;
+            });
+            return { l, s };
+          })
+          .filter(x => x.s > 0);
       }
 
       if (!sc.length) return { type: 'none' };
 
-      if (f) {
-        const ff = sc.filter(x => floorNum(x.l) === f.n);
-        if (ff.length) sc = ff;
-      }
-
-      const max = Math.max(...sc.map(x => x.s));
+      sc.sort((a, b) => b.s - a.s);
+      const max = sc[0].s;
       const top = sc.filter(x => x.s === max).map(x => x.l);
 
       if (top.length === 1) return { type: 'answer', loc: top[0] };
-
-      const bids = [...new Set(top.map(l => l.building_id))];
-      if (!b && bids.length > 1) return { type: 'ask_building', ids: bids, raw };
-
-      return { type: 'ask_which', options: top };
+      return { type: 'ask_which', options: sc.slice(0, 10).map(x => x.l) };
     }
 
-    /* ============================================================
-       2. UI RENDERING & EDITORIAL RESULT CARDS
-       ============================================================ */
     const chatLog = document.getElementById('chat-log');
     const chatForm = document.getElementById('chat-form');
     const chatInput = document.getElementById('chat-input');
@@ -667,11 +537,6 @@
       }
 
       card.appendChild(el('p', 'result-desc', loc.description));
-
-      if (loc.needs_verification) {
-        card.appendChild(el('span', 'warn-tag', 'Note: Location details are currently being verified.'));
-      }
-
       bubble.appendChild(card);
       chatLog.scrollTop = chatLog.scrollHeight;
     }
@@ -679,14 +544,10 @@
     function showWelcome() {
       chatLog.innerHTML = '';
       const bubble = addBotBubble();
-      bubble.appendChild(el('p', '', 'Hi! I am your PVG campus assistant. Ask me where any lab, office, washroom, or facility is:'));
+      bubble.appendChild(el('p', '', 'Hi! I am your PVG campus assistant. Ask me where any office, lab, washroom, or facility is:'));
 
       const ul = el('ul', 'examples');
-      [
-        'Where is the FE HOD office?',
-        'Computer lab on 2nd floor',
-        'Boys washroom in main building'
-      ].forEach(sample => {
+      ['Principal Office', 'FE HOD Office', 'Washroom in Main Building', 'Computer Lab'].forEach(sample => {
         const li = el('li', '', `"${sample}"`);
         li.onclick = () => ask(sample);
         ul.appendChild(li);
@@ -706,7 +567,7 @@
         return;
       }
 
-      if (/^(hi|hii|hello|hey|good (morning|afternoon|evening)|namaste)\b/i.test(trimmed)) {
+      if (/^(hi|hii|hello|hey|namaste)\b/i.test(trimmed)) {
         const b = addBotBubble();
         b.appendChild(el('p', '', 'Hello! Ask me where any lab, office, washroom, or facility is on the PVG campus.'));
         return;
@@ -718,36 +579,18 @@
         return showAnswer(r.loc);
       }
 
-      if (r.type === 'ask_building') {
+      if (r.type === 'category_list' || r.type === 'ask_which') {
         const b = addBotBubble();
-        b.appendChild(el('p', '', 'Which building do you mean?'));
+        b.appendChild(el('p', '', r.title || 'Here are the matching locations:'));
         return appendChips(
           b,
-          r.ids.map(id => [shortName(bname(id)), () => ask(r.raw + ' ' + bname(id))])
-        );
-      }
-
-      if (r.type === 'ask_which') {
-        const b = addBotBubble();
-        const many = r.options.length > 10;
-        b.appendChild(
-          el(
-            'p',
-            '',
-            many
-              ? 'There are several matches. Please specify a floor (e.g., "2nd floor") or pick one below:'
-              : 'Which exact location do you mean?'
-          )
-        );
-        return appendChips(
-          b,
-          r.options.slice(0, 10).map(l => {
+          r.options.map(l => {
             const bLabel = shortName(l.building || bname(l.building_id));
-            const label = `${l.name}${l.floor ? ' – ' + l.floor : ''}${many && bLabel ? ' (' + bLabel + ')' : ''}`;
+            const label = `${l.name} (${bLabel}${l.floor ? ' - ' + l.floor : ''})`;
             return [
               label,
               () => {
-                addUserBubble(label);
+                addUserBubble(l.name);
                 showAnswer(l);
               }
             ];
@@ -755,39 +598,12 @@
         );
       }
 
-      if (r.type === 'building_only') {
-        const b = addBotBubble();
-        b.appendChild(el('p', '', `What are you looking for in ${shortName(r.building.name)}?`));
-        return appendChips(
-          b,
-          ['Office', 'Lab', 'Washroom', 'Classroom', 'Lift'].map(w => [
-            w,
-            () => ask(`${w} ${r.building.name}`)
-          ])
-        );
-      }
-
-      if (r.type === 'not_in_building') {
-        const b = addBotBubble();
-        b.appendChild(el('p', '', `I didn't find that in ${shortName(r.building.name)}. However, it is available in:`));
-        return appendChips(
-          b,
-          r.alts.map(id => [
-            shortName(bname(id)),
-            () => ask(`${r.cleanQuery} ${bname(id)}`)
-          ])
-        );
-      }
-
-      // Fallback when nothing matches
+      // Fallback
       const b = addBotBubble();
-      b.appendChild(el('p', '', 'I could not find that on campus. Try searching for one of these popular locations:'));
+      b.appendChild(el('p', '', 'I could not find that exact match on campus. Try selecting one of these common locations:'));
       appendChips(b, QUICK.map(w => [w, () => ask(w)]));
     }
 
-    /* ============================================================
-       3. INITIALIZATION, VOICE INPUT & DATA LOADING
-       ============================================================ */
     QUICK.forEach(w => quickBar.appendChild(makeChip(w, () => ask(w))));
 
     chatForm.addEventListener('submit', e => {
@@ -799,45 +615,15 @@
 
     document.getElementById('clear-btn').addEventListener('click', showWelcome);
 
-    // Optional Voice Input (Web Speech API)
-    const micBtn = document.getElementById('mic-btn');
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (SpeechRecognition) {
-      const recognition = new SpeechRecognition();
-      recognition.lang = 'en-IN';
-      recognition.interimResults = false;
-
-      micBtn.addEventListener('click', () => {
-        try {
-          recognition.start();
-          micBtn.classList.add('listening');
-        } catch (_) {}
-      });
-
-      recognition.onresult = event => {
-        const transcript = event.results[0][0].transcript;
-        chatInput.value = transcript;
-        ask(transcript);
-      };
-
-      recognition.onend = () => micBtn.classList.remove('listening');
-      recognition.onerror = () => micBtn.classList.remove('listening');
-    } else {
-      micBtn.style.display = 'none';
-    }
-
     showWelcome();
 
-    // Tries root campus_data.json first, then falls back to data/campus_data.json
     fetch('campus_data.json')
       .then(r => (r.ok ? r.json() : Promise.reject()))
       .catch(() => fetch('data/campus_data.json').then(r => r.json()))
       .then(initData)
       .catch(() => {
         const b = addBotBubble();
-        b.appendChild(
-          el('p', '', 'Could not load campus_data.json. Make sure it is placed in the root folder or inside /data/.')
-        );
+        b.appendChild(el('p', '', 'Could not load campus_data.json. Make sure it is placed in the root folder or inside /data/.'));
       });
   </script>
 </body>
