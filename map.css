@@ -1,70 +1,175 @@
-/* Live map navigation — uses the colours from style.css */
+/* =========================================================
+   PVG COET Campus Guide — Live Map Navigation Styles
+   Theme: Deep Navy + Brass Gold + Fraunces & Inter
+========================================================= */
 
-.cb-map-chip{
+/* Map chip inside chatbot quick-suggestions bar */
+.cb-map-chip {
   flex-shrink: 0;
   font-size: 12px;
-  padding: 6px 12px;
+  font-weight: 600;
+  padding: 6px 13px;
   border-radius: 999px;
-  border: 1px solid var(--cb-gold);
-  background: var(--cb-navy);
-  color: var(--cb-gold-soft);
+  border: 1px solid var(--cb-gold, #C6981F);
+  background: linear-gradient(135deg, var(--cb-navy-mid, #18335C), var(--cb-navy, #10233F));
+  color: var(--cb-gold-soft, #E7C165);
   cursor: pointer;
   white-space: nowrap;
+  box-shadow: 0 3px 10px rgba(16, 35, 63, 0.16);
+  transition: transform 0.16s ease, background 0.16s ease;
 }
-.cb-map-chip:hover{ background: var(--cb-navy-deep); }
 
-.cb-nav-btn{
-  display: block;
-  margin-top: 10px;
+.cb-map-chip:hover {
+  transform: translateY(-1px);
+  background: var(--cb-navy-deep, #0B1930);
+}
+
+/* "Navigate to ..." button inside chatbot location cards */
+.cb-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 9px;
   font-size: 12.5px;
   font-weight: 600;
-  padding: 8px 12px;
-  border: none;
-  border-radius: 8px;
-  background: var(--cb-navy);
-  color: var(--cb-gold-soft);
+  padding: 8px 13px;
+  border: 1px solid var(--cb-gold, #C6981F);
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--cb-navy-mid, #18335C), var(--cb-navy, #10233F));
+  color: var(--cb-gold-soft, #E7C165);
   cursor: pointer;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
 }
-.cb-nav-btn:hover{ background: var(--cb-navy-deep); }
 
-/* Map screen */
-.cm-panel{
+.cb-nav-btn:hover {
+  transform: translateY(-1px);
+  background: var(--cb-navy-deep, #0B1930);
+  box-shadow: 0 6px 14px rgba(16, 35, 63, 0.22);
+}
+
+/* Full-screen Live Map Overlay */
+.cm-panel {
   position: fixed;
   inset: 0;
   z-index: 10000;
   display: none;
   flex-direction: column;
-  background: var(--cb-paper);
-  font-family: var(--cb-font-body);
+  background: var(--cb-paper, #FBF8F1);
+  font-family: var(--cb-font-body, 'Inter', system-ui, sans-serif);
 }
-.cm-panel.cm-open{ display: flex; }
-.cm-panel *{ box-sizing: border-box; }
 
-#campusMap{ flex: 1; min-height: 0; }
+.cm-panel.cm-open {
+  display: flex;
+  animation: cm-fade-in 0.2s ease;
+}
 
-.cm-controls{
+@keyframes cm-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.cm-panel * {
+  box-sizing: border-box;
+}
+
+/* Leaflet map container */
+#campusMap {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+}
+
+/* Bottom control bar */
+.cm-controls {
   flex-shrink: 0;
   display: grid;
-  gap: 8px;
+  gap: 9px;
   width: 100%;
-  max-width: 720px;
+  max-width: 740px;
   margin: 0 auto;
-  padding: 12px 16px 14px;
-  background: #fff;
-  border-top: 1px solid var(--cb-line);
+  padding: 13px 16px 15px;
+  background: rgba(255, 255, 255, 0.98);
+  border-top: 2.5px solid var(--cb-gold, #C6981F);
+  box-shadow: 0 -10px 26px rgba(11, 25, 48, 0.12);
 }
-.cm-controls label{ display: grid; gap: 3px; font-size: 13px; font-weight: 600; color: var(--cb-navy); }
-.cm-controls select{
-  font: inherit; font-weight: 400; padding: 9px;
-  border: 1px solid var(--cb-line); border-radius: 8px;
-  background: var(--cb-paper); color: var(--cb-ink);
+
+.cm-controls label {
+  display: grid;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cb-navy, #10233F);
 }
-.cm-row{ display: flex; gap: 8px; }
-.cm-controls button{
-  font: inherit; font-weight: 600; padding: 11px 14px;
-  border: none; border-radius: 8px; cursor: pointer;
+
+.cm-controls select {
+  font: inherit;
+  font-weight: 500;
+  padding: 9px 11px;
+  border: 1.5px solid var(--cb-line, #E4DCC8);
+  border-radius: 9px;
+  background: var(--cb-paper, #FBF8F1);
+  color: var(--cb-ink, #1E2430);
+  outline: none;
+  transition: border-color 0.16s ease;
 }
-#cmGo{ flex: 1; background: var(--cb-navy); color: var(--cb-gold-soft); }
-#cmStop{ background: #EDE7D6; color: var(--cb-navy); }
-.cm-controls button:disabled{ opacity: .5; cursor: default; }
-#cmStatus{ margin: 0; font-size: 14px; color: var(--cb-ink); min-height: 1.3em; }
+
+.cm-controls select:focus {
+  border-color: var(--cb-gold, #C6981F);
+}
+
+.cm-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cm-controls button {
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 11px 14px;
+  border: none;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease, background 0.15s ease;
+}
+
+.cm-controls button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+#cmGo {
+  flex: 1;
+  min-width: 150px;
+  background: linear-gradient(135deg, var(--cb-navy-mid, #18335C), var(--cb-navy, #10233F));
+  color: var(--cb-gold-soft, #E7C165);
+  box-shadow: 0 4px 12px rgba(16, 35, 63, 0.2);
+}
+
+#cmStop {
+  background: #EDE7D6;
+  color: var(--cb-navy, #10233F);
+}
+
+#campusMapBack {
+  background: #FFF5D6;
+  color: var(--cb-navy, #10233F);
+  border: 1px solid var(--cb-gold, #C6981F);
+}
+
+.cm-controls button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+#cmStatus {
+  margin: 0;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: var(--cb-paper, #FBF8F1);
+  border-left: 3px solid var(--cb-gold, #C6981F);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--cb-ink, #1E2430);
+  min-height: 1.4em;
+}
