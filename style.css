@@ -41,13 +41,17 @@
   cursor: pointer;
   background: linear-gradient(135deg, var(--cb-navy-mid), var(--cb-navy-deep));
   color: var(--cb-gold-soft);
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   box-shadow: var(--cb-shadow), 0 0 0 0 var(--cb-gold-glow);
   z-index: 9998;
   transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.24s ease;
   animation: cb-pulse 2.8s infinite;
+}
+
+.cb-launcher.cb-launcher-visible {
+  display: flex;
 }
 
 .cb-launcher:hover {
@@ -80,7 +84,7 @@
   object-fit: cover;
 }
 
-/* ---------- Panel Shell ---------- */
+/* ---------- Panel Shell (Open Immediately on Load) ---------- */
 .cb-panel {
   position: fixed;
   inset: 0;
@@ -96,16 +100,16 @@
   flex-direction: column;
   overflow: hidden;
   z-index: 9999;
-  opacity: 0;
-  transform: translateY(12px) scale(0.985);
-  pointer-events: none;
-  transition: opacity 0.24s ease, transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.cb-panel.cb-open {
   opacity: 1;
   transform: translateY(0) scale(1);
   pointer-events: auto;
+  transition: opacity 0.24s ease, transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cb-panel:not(.cb-open) {
+  opacity: 0;
+  transform: translateY(12px) scale(0.985);
+  pointer-events: none;
 }
 
 /* ---------- Header + Cartoon Mascot ---------- */
@@ -473,150 +477,4 @@
   background: #fff;
   padding: 6px 0 10px;
   margin: 0;
-}
-
-/* ---------- Live Map Navigation Styles ---------- */
-.cb-map-chip {
-  flex-shrink: 0;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 6px 13px;
-  border-radius: 999px;
-  border: 1px solid var(--cb-gold);
-  background: linear-gradient(135deg, var(--cb-navy-mid), var(--cb-navy));
-  color: var(--cb-gold-soft);
-  cursor: pointer;
-  white-space: nowrap;
-  box-shadow: 0 3px 10px rgba(16, 35, 63, 0.16);
-  transition: transform 0.16s ease;
-}
-
-.cb-map-chip:hover {
-  transform: translateY(-1px);
-  background: var(--cb-navy-deep);
-}
-
-.cb-nav-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 9px;
-  font-size: 12.5px;
-  font-weight: 600;
-  padding: 8px 13px;
-  border: 1px solid var(--cb-gold);
-  border-radius: 9px;
-  background: linear-gradient(135deg, var(--cb-navy-mid), var(--cb-navy));
-  color: var(--cb-gold-soft);
-  cursor: pointer;
-  transition: transform 0.16s ease, box-shadow 0.16s ease;
-}
-
-.cb-nav-btn:hover {
-  transform: translateY(-1px);
-  background: var(--cb-navy-deep);
-  box-shadow: 0 6px 14px rgba(16, 35, 63, 0.22);
-}
-
-/* Map Screen */
-.cm-panel {
-  position: fixed;
-  inset: 0;
-  z-index: 10000;
-  display: none;
-  flex-direction: column;
-  background: var(--cb-paper);
-  font-family: var(--cb-font-body);
-}
-
-.cm-panel.cm-open {
-  display: flex;
-}
-
-.cm-panel * {
-  box-sizing: border-box;
-}
-
-#campusMap {
-  flex: 1;
-  min-height: 0;
-}
-
-.cm-controls {
-  flex-shrink: 0;
-  display: grid;
-  gap: 8px;
-  width: 100%;
-  max-width: 740px;
-  margin: 0 auto;
-  padding: 12px 16px 14px;
-  background: #fff;
-  border-top: 2px solid var(--cb-gold);
-}
-
-.cm-controls label {
-  display: grid;
-  gap: 3px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--cb-navy);
-}
-
-.cm-controls select {
-  font: inherit;
-  font-weight: 400;
-  padding: 9px;
-  border: 1px solid var(--cb-line);
-  border-radius: 8px;
-  background: var(--cb-paper);
-  color: var(--cb-ink);
-}
-
-.cm-row {
-  display: flex;
-  gap: 8px;
-}
-
-.cm-controls button {
-  font: inherit;
-  font-weight: 600;
-  padding: 11px 14px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.15s ease;
-}
-
-.cm-controls button:active {
-  transform: scale(0.98);
-}
-
-#cmGo {
-  flex: 1;
-  background: var(--cb-navy);
-  color: var(--cb-gold-soft);
-}
-
-#cmStop {
-  background: #EDE7D6;
-  color: var(--cb-navy);
-}
-
-#campusMapBack {
-  background: #FFF5D6;
-  color: var(--cb-navy);
-  border: 1px solid var(--cb-gold);
-}
-
-.cm-controls button:disabled {
-  opacity: .5;
-  cursor: default;
-}
-
-#cmStatus {
-  margin: 0;
-  font-size: 13.5px;
-  font-weight: 500;
-  color: var(--cb-ink);
-  min-height: 1.3em;
 }
